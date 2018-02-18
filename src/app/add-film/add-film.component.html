@@ -1,0 +1,130 @@
+<h3 class="pt-3 pb-3">Добавить фильм</h3>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="title">Название*</label>
+        <input 
+          formControlName="title"
+          type="text" 
+          class="form-control" 
+          id="title">
+      </div>
+      <div class="form-group">
+        <label for="director">Режиссёр*</label>
+        <input 
+          formControlName="director"
+          type="text" 
+          class="form-control" 
+          id="director">
+      </div>
+      <div class="form-group">
+        <label for="year">Год*</label>
+        <input 
+          formControlName="year"
+          type="number" 
+          class="form-control" 
+          id="year">
+      </div>
+      <div class="form-group">
+        <label>Тип*</label><br>
+        <div class="form-check-inline">
+          <input
+            formControlaName="type"
+            class="form-check-input" 
+            type="radio" 
+            value="0" 
+            name="type" 
+            id="film-radio" 
+            checked>
+          <label 
+            class="form-check-label" 
+            for="film-radio">
+            Фильм
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <input
+            formControlaName="type" 
+            class="form-check-input" 
+            type="radio" 
+            value="0" 
+            name="type" 
+            id="ser-radio">
+          <label 
+            class="form-check-label" 
+            for="ser-radio">
+            Сериал
+          </label>
+        </div>  
+      </div>
+      <div class="form-group">
+        <label for="genres">Жанр(ы)</label>
+        <input
+          type="text" 
+          class="form-control" 
+          id="genres" 
+          (keyup.enter)="addGenre(genre)" #genre>
+        <ul id="genres-list" class="list-group">
+          <li 
+            class="list-group-item genre" 
+            *ngFor="let genre of genres.controls"
+            (click)="removeGenre()">
+            {{ genre.value }}
+          </li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <label for="director-photo">Постер</label>
+        <input
+          type="file" 
+          class="form-control-file" 
+          id="director-photo" 
+          placeholder="Тарантино"
+          #photo
+          (change)="addPhoto(photo)">
+      </div>
+      <div class="form-group">
+        <label for="description">Описание</label>
+        <textarea 
+          class="form-control" 
+          rows="5" 
+          name="description" 
+          id="description">
+        </textarea>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <div class="container">
+            <div class="row">
+              <p>Постер</p>
+            </div>
+            <div class="row">
+              <img [src]="imgSrc">
+            </div>
+            <div class="row justify-content-center">
+              <button 
+                type="button" 
+                class="btn btn-danger mt-2"
+                [class.invisible]="isButtonInvisible"
+                (click)="removePhoto()">
+                Удалить постер
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-4 mb-4">
+    <div class="col-12 col-md-6">
+        <button
+          type="submit" 
+          class="btn btn-primary">
+          Добавить фильм
+        </button>
+    </div>
+  </div>
+</form>

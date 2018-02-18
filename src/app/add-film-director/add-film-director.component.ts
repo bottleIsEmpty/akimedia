@@ -9,22 +9,22 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AddFilmDirectorComponent {
 
-  imgSrc: String = 'assets/no-photo.png';
-  isButtonInvisible = true;
+  private imgSrc: String = 'assets/no-photo.png';
+  private isButtonInvisible = true;
 
   constructor(public SnackBar: MatSnackBar) { }
-  addPhoto($event) {
 
-    const file: File = $event.target.files[0];
+  addPhoto(photo) {
+    const file: File = photo.files[0];
     if (!file.type.match('image/*')) {
       alert('Некорректный файл!');
-      $event.target.value = '';
+      photo.value = '';
       return false;
     }
 
     if (file.size > 2097152) {
       alert('Файл не должен превышать 2 мб');
-      $event.target.value = '';
+      photo.value = '';
       return false;
     }
 
@@ -36,15 +36,16 @@ export class AddFilmDirectorComponent {
     reader.readAsDataURL(file);
   }
 
-  deletePhoto() {
+  removePhoto() {
     const photo: HTMLInputElement = <HTMLInputElement>(document.getElementById('director-photo'));
     photo.value = '';
     this.imgSrc = 'assets/no-photo.png';
+    this.isButtonInvisible = true;
   }
 
   submit(f: FormGroup) {
     f.reset();
-    this.deletePhoto();
+    this.removePhoto();
     this.SnackBar.open('Режиссёр успешно добавлен!', null, {
       duration: 2000
     });

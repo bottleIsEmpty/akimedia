@@ -18,10 +18,14 @@
           placeholder="Квентин">
       </div>
       <div 
-      *ngIf="firstName.invalid && firstName.touched" 
-      class="alert alert-danger">
-        <div *ngIf="firstName.errors.required">Введите имя.</div>
-        <div *ngIf="firstName.errors.minlength">Имя должно быть не короче {{ firstName.errors.minlength.requiredLength }} символов.</div>
+        *ngIf="firstName.invalid && firstName.touched" 
+        class="alert alert-danger">
+        <div *ngIf="firstName.errors.required">
+          Введите имя.
+        </div>
+        <div *ngIf="firstName.errors.minlength">
+          Имя должно быть не короче {{ firstName.errors.minlength.requiredLength }} символов.
+        </div>
       </div>
       <div class="form-group">
         <label for="director-surname">Фамилия*</label>
@@ -40,8 +44,12 @@
       <div 
       *ngIf="secondName.invalid && secondName.touched" 
       class="alert alert-danger">
-        <div *ngIf="secondName.errors.required">Введите фамилию.</div>
-        <div *ngIf="secondName.errors.minlength">Фамилия должна быть не короче {{ secondName.errors.minlength.requiredLength }} символов.</div>
+        <div *ngIf="secondName.errors.required">
+          Введите фамилию.
+        </div>
+        <div *ngIf="secondName.errors.minlength">
+          Фамилия должна быть не короче {{ secondName.errors.minlength.requiredLength }} символов.
+        </div>
       </div>
       <div class="form-group">
         <label for="director-photo">Фото</label>
@@ -50,7 +58,8 @@
         class="form-control-file" 
         id="director-photo" 
         placeholder="Тарантино"
-        (change)="addPhoto($event)">
+        #photo
+        (change)="addPhoto(photo)">
       </div>
     </div>
 
@@ -65,15 +74,14 @@
               <img 
                 [src]="imgSrc" 
                 class="img-fluid img-thumbnail rounded"
-                alt="assets/no-photo.png"
-                #photo>
+                alt="assets/no-photo.png">
             </div>
             <div class="row justify-content-center">
               <button 
                   type="button" 
                   class="btn btn-danger mt-2"
                   [class.invisible]="isButtonInvisible"
-                  (click)="deletePhoto()">
+                  (click)="removePhoto()">
                 Удалить фото
               </button>
             </div>
