@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 
@@ -12,7 +13,7 @@ export class AddFilmComponent {
   private isButtonInvisible = true;
   form: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(public SnackBar: MatSnackBar, fb: FormBuilder) {
     this.form = fb.group({
       title: ['', [
           Validators.required,
@@ -77,10 +78,32 @@ export class AddFilmComponent {
   }
 
   submit() {
-    console.log(this.form.value);
+    this.form.reset();
+    this.removePhoto();
+    this.SnackBar.open('Режиссёр успешно добавлен!', null, {
+      duration: 2000
+    });
   }
+
+  // Геттеры
 
   get genres() {
     return <FormArray>this.form.get('genres');
+  }
+
+  get title() {
+    return this.form.get('title');
+  }
+
+  get director() {
+    return this.form.get('director');
+  }
+
+  get year() {
+    return this.form.get('year');
+  }
+
+  get description() {
+    return this.form.get('description');
   }
 }
