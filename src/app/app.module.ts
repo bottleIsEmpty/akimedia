@@ -1,3 +1,4 @@
+import { FilmsService } from './films/shared/films.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -5,13 +6,16 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NouisliderModule } from 'ng2-nouislider';
 
 import { AppComponent } from './app.component';
-import { FilmDirectorComponent } from './film-director/film-director.component';
+import { FilmDirectorComponent } from './films/film-director/film-director.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { AddFilmDirectorComponent } from './add-film-director/add-film-director.component';
-import { AddFilmComponent } from './add-film/add-film.component';
+import { AddFilmDirectorComponent } from './films/add-film-director/add-film-director.component';
+import { AddFilmComponent } from './films/add-film/add-film.component';
+import { FilmsListComponent } from './films/films-list/films-list.component';
+import { FilmProfileComponent } from './films/film-profile/film-profile.component';
 
 @NgModule({
   declarations: [
@@ -21,22 +25,29 @@ import { AddFilmComponent } from './add-film/add-film.component';
     HomeComponent,
     AddFilmDirectorComponent,
     AddFilmComponent,
+    FilmsListComponent,
+    FilmProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NouisliderModule,
     [MatSnackBarModule],
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'directors', component: FilmDirectorComponent },
       { path: 'add-film', component: AddFilmComponent },
-      { path: 'add-film-director', component: AddFilmDirectorComponent }
+      { path: 'add-film-director', component: AddFilmDirectorComponent },
+      { path: 'films/:id', component: FilmProfileComponent },
+      { path: 'films', component: FilmsListComponent }
     ])
   ],
-  providers: [],
+  providers: [
+    FilmsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
