@@ -10,11 +10,6 @@ import { Component, OnInit } from '@angular/core';
   </footer>
   `
 })
-export class FooterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class FooterComponent {
 
 }
