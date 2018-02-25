@@ -5,7 +5,8 @@ export class Film {
     title: string;
     year: number;
     type: boolean;
-    genres: String[];
+    genres: string[];
     director: Director;
+    logo: string;
     description: string;
 }

@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NouisliderModule } from 'ng2-nouislider';
+import { StarRatingModule } from 'angular-star-rating';
 
 import { AppComponent } from './app.component';
 import { FilmDirectorComponent } from './films/film-director/film-director.component';
@@ -16,6 +17,7 @@ import { AddFilmDirectorComponent } from './films/add-film-director/add-film-dir
 import { AddFilmComponent } from './films/add-film/add-film.component';
 import { FilmsListComponent } from './films/films-list/films-list.component';
 import { FilmProfileComponent } from './films/film-profile/film-profile.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { FilmProfileComponent } from './films/film-profile/film-profile.componen
     AddFilmDirectorComponent,
     AddFilmComponent,
     FilmsListComponent,
-    FilmProfileComponent
+    FilmProfileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,18 +38,19 @@ import { FilmProfileComponent } from './films/film-profile/film-profile.componen
     BrowserAnimationsModule,
     NouisliderModule,
     [MatSnackBarModule],
+    StarRatingModule.forRoot(),
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      { 
-        path: '', 
-        component: HomeComponent 
+      {
+        path: '',
+        component: HomeComponent
       },
       {
-        path: 'films', 
+        path: 'films',
         children: [
           {
             path: '',
-            component: FilmsListComponent 
+            component: FilmsListComponent
           },
           {
             path: 'add',
@@ -57,7 +61,7 @@ import { FilmProfileComponent } from './films/film-profile/film-profile.componen
             children: [
               {
                 path: '',
-                component: FilmDirectorComponent                
+                component: FilmDirectorComponent
               },
               {
                 path: 'add',
@@ -69,7 +73,7 @@ import { FilmProfileComponent } from './films/film-profile/film-profile.componen
             path: ':id',
             component: FilmProfileComponent
           },
-        ] 
+        ]
       }
     ])
   ],

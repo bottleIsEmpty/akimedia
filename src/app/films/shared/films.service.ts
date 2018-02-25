@@ -9,7 +9,7 @@ export class FilmsService {
   }
 
   getFilm(id) {
-    return Promise.resolve(FILMS[id])
+    return Promise.resolve(FILMS[id]);
   }
 
 }

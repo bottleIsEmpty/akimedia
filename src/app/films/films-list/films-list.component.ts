@@ -12,13 +12,11 @@ export class FilmsListComponent implements OnInit {
 
   slider = [1930, 1990];
 
-  films: Film[] = [];
+  films: Film[];
 
   constructor(private filmsService: FilmsService) { }
 
   ngOnInit() {
-    // this.filmsService.getFilms()
-    //   .then(films => this.films = films);
     this.filmsService.getFilms()
       .then(films => this.films = films);
   }

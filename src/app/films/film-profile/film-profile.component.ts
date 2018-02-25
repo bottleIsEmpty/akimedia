@@ -16,16 +16,13 @@ export class FilmProfileComponent implements OnInit {
     private filmsService: FilmsService,
     private route: ActivatedRoute
   ) { }
- 
+
   ngOnInit() {
     this.route.paramMap
       .subscribe(params => {
-        let id = +params.get('id');
+        const id = +params.get('id');
         this.filmsService.getFilm(id)
-          .then(film => {
-            this.film = film;
-            console.log(film);
-          });
+          .then(film => this.film = film );
       });
   }
 
