@@ -4,8 +4,8 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-4">
-    <div class="card search">
+  <div class="col-12 col-lg-4">
+    <div class="card search mb-4">
       <div class="card-header">
         Поиск
       </div>
@@ -49,12 +49,11 @@
           <div class="text-center">
             <button class="btn">Поиск</button>
           </div>
-          
         </form>
       </div>
     </div>
   </div>
-  <div class="col-8">
+  <div class="col-12 col-lg-8">
       <div class="container">
         <div 
           *ngFor="let film of films" 
@@ -64,11 +63,8 @@
           </div>
           <div class="col-9">
             <ul>
-              <li><b>Название: </b><a routerLink="/films/10">{{ film.title }}</a></li>
+              <li><b>Название: </b><a [routerLink]="['/films', film.id]">{{ film.title }}</a></li>
               <li><b>Режиссёр: </b>{{ film.director.name + ' ' + film.director.surname }}</li>
-              <li><b>Год: </b>{{ film.year }} </li>
-              <li><b>Тип: </b>{{ film.type === 0 ? 'Фильм' : 'Сериал' }}</li>
-              <li><b>Жанры: </b>{{ film.genres.join(', ') }}</li>
               <li><b>Описание: </b>{{ film.description }}</li>
             </ul>
           </div>

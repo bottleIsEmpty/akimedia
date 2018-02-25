@@ -37,12 +37,40 @@ import { FilmProfileComponent } from './films/film-profile/film-profile.componen
     [MatSnackBarModule],
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'directors', component: FilmDirectorComponent },
-      { path: 'add-film', component: AddFilmComponent },
-      { path: 'add-film-director', component: AddFilmDirectorComponent },
-      { path: 'films/:id', component: FilmProfileComponent },
-      { path: 'films', component: FilmsListComponent }
+      { 
+        path: '', 
+        component: HomeComponent 
+      },
+      {
+        path: 'films', 
+        children: [
+          {
+            path: '',
+            component: FilmsListComponent 
+          },
+          {
+            path: 'add',
+            component: AddFilmComponent
+          },
+          {
+            path: 'directors',
+            children: [
+              {
+                path: '',
+                component: FilmDirectorComponent                
+              },
+              {
+                path: 'add',
+                component: AddFilmDirectorComponent
+              }
+            ]
+          },
+          {
+            path: ':id',
+            component: FilmProfileComponent
+          },
+        ] 
+      }
     ])
   ],
   providers: [

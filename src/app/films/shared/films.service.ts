@@ -8,4 +8,8 @@ export class FilmsService {
     return Promise.resolve(FILMS);
   }
 
+  getFilm(id) {
+    return Promise.resolve(FILMS[id])
+  }
+
 }
