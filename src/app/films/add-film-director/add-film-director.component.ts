@@ -9,8 +9,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AddFilmDirectorComponent {
 
-  private imgSrc: String = 'assets/no-photo.png';
-  private isButtonInvisible = true;
+  imgSrc: String = 'assets/no-photo.png';
+  isButtonInvisible = true;
 
   constructor(public SnackBar: MatSnackBar) { }
 

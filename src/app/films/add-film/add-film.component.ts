@@ -9,8 +9,8 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 })
 export class AddFilmComponent {
 
-  private imgSrc: String = 'assets/no-photo.png';
-  private isButtonInvisible = true;
+  imgSrc: String = 'assets/no-photo.png';
+  isButtonInvisible = true;
   form: FormGroup;
 
   constructor(public SnackBar: MatSnackBar, fb: FormBuilder) {
