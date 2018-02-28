@@ -5,12 +5,11 @@ import { Component, OnInit } from '@angular/core';
   template: `
   <footer class="footer mt-2">
     <div class="container text-center">
-      <span class="text-muted">Александр Бобко, ПКС-14, 2018</span>
+      <span class="text-muted">&reg;Александр Бобко, ПКС-14, 2018</span>
     </div>
   </footer>
   `
 })
 export class FooterComponent {
-
 
 }

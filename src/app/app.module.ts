@@ -1,3 +1,6 @@
+import { AuthService } from './services/auth.service';
+import { MockBackend } from '@angular/http/testing';
+import { fakeBackendProvider } from './helpers/mock-backend';
 import { FilmsService } from './films/shared/films.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,6 +21,8 @@ import { AddFilmComponent } from './films/add-film/add-film.component';
 import { FilmsListComponent } from './films/films-list/films-list.component';
 import { FilmProfileComponent } from './films/film-profile/film-profile.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { BaseRequestOptions } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { FooterComponent } from './footer/footer.component';
     AddFilmComponent,
     FilmsListComponent,
     FilmProfileComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,10 @@ import { FooterComponent } from './footer/footer.component';
       {
         path: '',
         component: HomeComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
       },
       {
         path: 'films',
@@ -78,7 +88,13 @@ import { FooterComponent } from './footer/footer.component';
     ])
   ],
   providers: [
-    FilmsService
+    FilmsService,
+    AuthService,
+
+    // Mock backend
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })
