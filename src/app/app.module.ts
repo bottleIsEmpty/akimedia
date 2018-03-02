@@ -23,6 +23,7 @@ import { FilmProfileComponent } from './films/film-profile/film-profile.componen
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { BaseRequestOptions } from '@angular/http';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BaseRequestOptions } from '@angular/http';
     FilmsListComponent,
     FilmProfileComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,10 @@ import { BaseRequestOptions } from '@angular/http';
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'signup',
+        component: SignUpComponent
       },
       {
         path: 'films',

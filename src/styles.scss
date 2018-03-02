@@ -56,10 +56,10 @@ ul {
 .content-block {
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 5px;
-}
 
-.content-block img {
-    max-width: 250px;
+    img {
+        max-width: 250px;
+    }
 }
 
 .noUi-connect {

@@ -16,8 +16,8 @@
         </div>
       </li>
       <li routerLinkActive="active" ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Книги</a>
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Книги</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown02">
           <a class="dropdown-item" href="#">Все книги</a>
           <a class="dropdown-item" routerLink="directors">Писатели</a>
           <a class="dropdown-item" href="#">Добавить книгу</a>
@@ -25,16 +25,16 @@
         </div>
       </li>
       <li routerLinkActive="active" ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Музыка</a>
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Музыка</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
           <a class="dropdown-item" href="#">Вся музыка</a>
           <a class="dropdown-item" routerLink="directors">Композиторы</a>
           <a class="dropdown-item" href="#">Добавить произведение</a>
           <a class="dropdown-item" href="#">Добавить композитора</a>
         </div>
       </li>
-      <li routerLinkActive="active" class="nav-item">
-        <a href="#" class="nav-link">Сообщество</a>
+      <li routerLinkActive="active" class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a href="#" class="nav-link">{{ authService.currentUser.name }}</a>
       </li>
       <li *ngIf="!authService.isLoggedIn()" routerLinkActive="active" class="nav-item">
         <a routerLink="login" class="nav-link">Войти</a>
