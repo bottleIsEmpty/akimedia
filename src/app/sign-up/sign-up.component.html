@@ -1,24 +1,89 @@
-<h3 class="text-center mt-3 mb-3">Регистрация</h3>
-<form class="row">
+<h3 
+  class="text-center mt-3 mb-3">
+  Регистрация
+</h3>
+<form class="row" [formGroup]="form">
   <div class="col-lg-6 col-sm-8 col-xs-10 offset-lg-3 offset-sm-2 offset-xs-1">
     <div class="form-group">
       <label for="login">Логин: </label>
-      <input type="text" class="form-control" id="login" name="login">
+      <input
+        type="text" 
+        class="form-control" 
+        id="login" 
+        formControlName="login">
+        <div class="alert alert-danger" *ngIf="login.touched && login.invalid">
+          <div *ngIf="login.errors.required">
+            Введите логин.
+          </div>
+          <div *ngIf="login.errors.minlength">
+            Логин должен быть не короче {{ login.errors.minlength.requiredLength }} символов.
+          </div>
+          <div *ngIf="login.errors.maxlength">
+            Логин должен быть не длинее {{ login.errors.maxlength.requiredLength }} символов.
+          </div>
+          <div *ngIf="login.errors.cannotContainSpace">
+            Логин не должен содержать пробел.
+          </div>
+        </div>
     </div>
     <div class="form-group">
       <label for="password">Пароль: </label>
-      <input type="password" class="form-control" id="password" name="password">
+      <input
+        type="password" 
+        class="form-control" 
+        id="password" 
+        formControlName="password">
+        <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+          <div *ngIf="password.errors.required">
+            Введите пароль.
+          </div>
+          <div *ngIf="password.errors.minlength">
+            Пароль должен быть не короче {{ password.errors.minlength.requiredLength }} символов.
+          </div>
+          <div *ngIf="password.errors.maxlength">
+            Пароль должен быть не длинее {{ password.errors.maxlength.requiredLength }} символов.
+          </div>
+        </div>
     </div>
     <div class="form-group">
       <label for="password-repeat">Повторите пароль: </label>
-      <input type="password" class="form-control" id="password-repeat" name="password-repeat">
+      <input
+        type="password"
+        class="form-control" 
+        id="password-repeat" 
+        formControlName="passwordRepeat">
+        <div class="alert alert-danger" *ngIf="passwordRepeat.touched && passwordRepeat.invalid">
+          <div *ngIf="passwordRepeat.errors.required">
+            Введите пароль снова.
+          </div>
+          <div *ngIf="passwordRepeat.errors.notMatch">
+            Пароли не совпадают.
+          </div>
+        </div>
     </div>
     <div class="form-group">
       <label for="email">E-mail: </label>
-      <input type="email" class="form-control" id="email" name="email">
+      <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        formControlName="email">
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+        <div *ngIf="email.errors.required">
+          Введите Email.
+        </div>
+        <div *ngIf="email.errors.email">
+          Email-адрес должен быть валидным.
+        </div>
+      </div>
     </div>
     <div class="text-center">
-      <button class="btn btn-primary btn-lg mt-2">Зарегистрироваться</button>
+      <button 
+        [disabled]="form.invalid"
+        (click)="register()"
+        class="btn btn-primary btn-lg mt-2 mb-4">
+        Зарегистрироваться
+      </button>
     </div>
   </div>
 </form>
