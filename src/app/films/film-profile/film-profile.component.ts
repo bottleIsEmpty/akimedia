@@ -11,6 +11,7 @@ import { FilmsService } from '../shared/films.service';
 export class FilmProfileComponent implements OnInit {
 
   film: Film;
+  comments = [];
 
   constructor(
     private filmsService: FilmsService,
@@ -24,6 +25,9 @@ export class FilmProfileComponent implements OnInit {
         this.filmsService.getFilm(id)
           .then(film => this.film = film );
       });
+    
+    this.filmsService.getComments()
+      .then(comments => this.comments = comments);
   }
 
 }

@@ -37,36 +37,31 @@
     </div>
   </div>
   <h4 class="mt-3">Отзывы о фильме (3):</h4>
-  <div class="card mt-3">
+  <div 
+    *ngFor="let comment of comments"
+    class="card mt-3">
     <div class="card-header">
-      <a href="#">Иван</a>, 25.02.2018
+      <a href="#">{{ comment.commentedBy.login }}</a>, {{ comment.date }}
     </div>
-    <div class="card-body">
-      Фильм понравился
+    <div 
+      class="card-body"
+      [style.backgroundColor]="(comment.commentType === -1) ? '#f7cfcf' : (comment.commentType === 0) ? 'white' : '#d7fbd7'">
+      {{ comment.comment }}
     </div>
   </div>
-  <div class="card mt-3">
-    <div class="card-header">
-      <a href="#">Иван</a>, 25.02.2018
-    </div>
-    <div class="card-body">
-      Фильм понравился
-    </div>
-  </div>
-  <div class="card mt-3">
-    <div class="card-header">
-      <a href="#">Иван</a>, 25.02.2018
-    </div>
-    <div class="card-body">
-      Фильм понравился
-    </div>
-  </div>
-  <form>
+  <form #f="ngForm" (submit)="addComment()">
     <div class="form-group">
       <label for="comment">
         <h4>Оставить отзыв:</h4>
       </label>
-      <textarea class="form-control" name="comment" id="" rows="5"></textarea>
+      <textarea
+        ngModel
+        #comment="ngModel" 
+        class="form-control" 
+        name="comment" 
+        id="comment" 
+        rows="5"></textarea>
     </div>
+    <button type="submit">Сохранить</button>
   </form>
 </ng-container>
