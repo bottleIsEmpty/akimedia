@@ -24,6 +24,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { BaseRequestOptions } from '@angular/http';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { FilmDirectorListComponent } from './film-director-list/film-director-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     FilmProfileComponent,
     FooterComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    FilmDirectorListComponent
   ],
   imports: [
     BrowserModule,
@@ -77,11 +79,15 @@ import { SignUpComponent } from './sign-up/sign-up.component';
             children: [
               {
                 path: '',
-                component: FilmDirectorComponent
+                component: FilmDirectorListComponent
               },
               {
                 path: 'add',
                 component: AddFilmDirectorComponent
+              },
+              {
+                path: ':id',
+                component: FilmDirectorComponent
               }
             ]
           },
