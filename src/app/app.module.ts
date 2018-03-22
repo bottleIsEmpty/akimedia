@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NouisliderModule } from 'ng2-nouislider';
 import { StarRatingModule } from 'angular-star-rating';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AppComponent } from './app.component';
 import { FilmDirectorComponent } from './films/film-director/film-director.component';
@@ -24,7 +25,9 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { BaseRequestOptions } from '@angular/http';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { FilmDirectorListComponent } from './film-director-list/film-director-list.component';
+import { FilmDirectorListComponent } from './films/film-director-list/film-director-list.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { UserListComponent } from './users/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { FilmDirectorListComponent } from './film-director-list/film-director-li
     FooterComponent,
     LoginComponent,
     SignUpComponent,
-    FilmDirectorListComponent
+    FilmDirectorListComponent,
+    UserProfileComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { FilmDirectorListComponent } from './film-director-list/film-director-li
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NouisliderModule,
+    Ng2SmartTableModule,
     [MatSnackBarModule],
     StarRatingModule.forRoot(),
     NgbModule.forRoot(),
@@ -62,6 +68,19 @@ import { FilmDirectorListComponent } from './film-director-list/film-director-li
       {
         path: 'signup',
         component: SignUpComponent
+      },
+      {
+        path: 'users',
+        children: [
+          {
+            path: '',
+            component: UserListComponent
+          },
+          {
+            path: ':id',
+            component: UserProfileComponent
+          }
+        ]
       },
       {
         path: 'films',

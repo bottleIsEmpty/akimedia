@@ -34,7 +34,7 @@
         </div>
       </li>
       <li routerLinkActive="active" class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a href="#" class="nav-link">{{ authService.currentUser.name }}</a>
+        <a [routerLink]="['users', authService.currentUser.id]" class="nav-link">{{ authService.currentUser.name }}</a>
       </li>
       <li *ngIf="!authService.isLoggedIn()" routerLinkActive="active" class="nav-item">
         <a routerLink="login" class="nav-link">Войти</a>
