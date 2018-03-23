@@ -41,7 +41,7 @@
     *ngFor="let comment of comments"
     class="card mt-3">
     <div class="card-header">
-      <a href="#">{{ comment.commentedBy.login }}</a>, {{ comment.date }}
+      <a [routerLink]="['/users', comment.commentedBy.id]">{{ comment.commentedBy.login }}</a>, {{ comment.date | date }}
     </div>
     <div 
       class="card-body"

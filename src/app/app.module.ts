@@ -28,6 +28,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { FilmDirectorListComponent } from './films/film-director-list/film-director-list.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { ShortifyPipe } from './pipes/shortify.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UserListComponent } from './users/user-list/user-list.component';
     SignUpComponent,
     FilmDirectorListComponent,
     UserProfileComponent,
-    UserListComponent
+    UserListComponent,
+    ShortifyPipe
   ],
   imports: [
     BrowserModule,

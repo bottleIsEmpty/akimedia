@@ -25,7 +25,7 @@ export class FilmProfileComponent implements OnInit {
         this.filmsService.getFilm(id)
           .then(film => this.film = film );
       });
-    
+
     this.filmsService.getComments()
       .then(comments => this.comments = comments);
   }

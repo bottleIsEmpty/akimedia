@@ -1,9 +1,77 @@
 <div class="row">
-  <h3>Пользователь <b>Александр</b></h3>
+  <h3 class="mt-3 mb-3">Пользователь <b>Александр</b></h3>
 </div>
 <div class="row">
-  <h4>Оцененные фильмы</h4>
+  <div class="card col-12 mb-3 p-0">
+    <div class="card-header">Активность пользователя</div>
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <p><b>Фильмов оценено: </b>10</p>
+            <p><b>Книг оценено: </b>3</p>
+            <p><b>Музыки оцененено: </b>55</p>
+            <p><b>Всего рецензий: </b> 4</p>
+          </div>
+          <div class="col-6">
+            <p><b>Средняя оценка фильмов: </b>6.72</p>
+            <p><b>Средняя оценка книг: </b>8.30</p>
+            <p><b>Средняя оценка музыки: </b>7.14</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
-  <ng2-smart-table [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+  <h4 class="col-12">Оцененные фильмы</h4>
+  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+</div>
+<div class="row">
+  <h4 class="col-12">Оцененные книги</h4>
+  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+</div>
+<div class="row">
+  <h4 class="col-12">Оцененная музыка</h4>
+  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+</div>
+<div class="row">
+  <h4 class="col-12">Рецензии пользователя</h4>
+  <table class="table table-bordered ">
+    <thead>
+      <tr>
+        <th>Название: </th>
+        <th>Рецензия: </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr #row>
+        <td><a href="#">Криминальное чтиво</a></td>
+        <td 
+          (click)="showFullText(comment)"
+          #comment
+          class="comment">
+          {{ lorem | shortify }}
+        </td>
+      </tr>
+      <tr #row>
+          <td><a href="#">Криминальное чтиво</a></td>
+          <td 
+            (click)="showFullText(comment)"
+            #comment
+            class="comment">
+            {{ lorem | shortify }}
+          </td>
+        </tr>
+        <tr #row>
+            <td><a href="#">Криминальное чтиво</a></td>
+            <td 
+              (click)="showFullText(comment)"
+              #comment
+              class="comment">
+              {{ lorem | shortify }}
+            </td>
+          </tr> 
+    </tbody>
+  </table>
 </div>
