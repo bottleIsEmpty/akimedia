@@ -25,15 +25,15 @@
 </div>
 <div class="row">
   <h4 class="col-12">Оцененные фильмы</h4>
-  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="filmData"></ng2-smart-table>
 </div>
 <div class="row">
   <h4 class="col-12">Оцененные книги</h4>
-  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+  <ng2-smart-table class="table table-bordered rounded" [settings]="bookTableSettings" [source]="bookData"></ng2-smart-table>
 </div>
 <div class="row">
   <h4 class="col-12">Оцененная музыка</h4>
-  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="data"></ng2-smart-table>
+  <ng2-smart-table class="table table-bordered rounded" [settings]="musicTableSettings" [source]="musicData"></ng2-smart-table>
 </div>
 <div class="row">
   <h4 class="col-12">Рецензии пользователя</h4>
@@ -46,32 +46,29 @@
     </thead>
     <tbody>
       <tr #row>
-        <td><a href="#">Криминальное чтиво</a></td>
+        <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
         <td 
-          (click)="showFullText(comment)"
-          #comment
           class="comment">
           {{ lorem | shortify }}
+          <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
         </td>
       </tr>
       <tr #row>
-          <td><a href="#">Криминальное чтиво</a></td>
-          <td 
-            (click)="showFullText(comment)"
-            #comment
-            class="comment">
-            {{ lorem | shortify }}
-          </td>
-        </tr>
-        <tr #row>
-            <td><a href="#">Криминальное чтиво</a></td>
-            <td 
-              (click)="showFullText(comment)"
-              #comment
-              class="comment">
-              {{ lorem | shortify }}
-            </td>
-          </tr> 
+        <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
+        <td 
+          class="comment">
+          {{ lorem | shortify }}
+          <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
+        </td>
+      </tr>
+      <tr #row>
+        <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
+        <td 
+          class="comment">
+          {{ lorem | shortify }}
+          <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
+        </td>
+      </tr> 
     </tbody>
   </table>
 </div>

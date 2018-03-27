@@ -29,7 +29,46 @@ export class UserProfileComponent {
     }
   };
 
-  data = [
+  bookTableSettings = {
+    hideSubHeader: true,
+    actions: null,
+    columns: {
+      id: {
+        title: '№',
+      },
+      title: {
+        title: 'Название',
+      },
+      author: {
+        title: 'Автор'
+      },
+      rating: {
+        title: 'Оценка',
+      }
+    }
+  };
+
+
+  musicTableSettings = {
+    hideSubHeader: true,
+    actions: null,
+    columns: {
+      id: {
+        title: '№',
+      },
+      title: {
+        title: 'Название',
+      },
+      composer: {
+        title: 'Композитор'
+      },
+      rating: {
+        title: 'Оценка',
+      }
+    }
+  };
+
+  filmData = [
     {
       id: 1,
       title: 'Начало',
@@ -50,8 +89,50 @@ export class UserProfileComponent {
     },
   ];
 
-  showFullText($comment: HTMLElement) {
-    $comment.innerText = this.lorem;
+  bookData = [
+    {
+      id: 1,
+      title: 'Начало',
+      rating: 8,
+      author: 'Кристофер Нолан'
+    },
+    {
+      id: 2,
+      title: 'Самый лучший фильм',
+      rating: 1,
+      author: 'Кирилл Кузин'
+    },
+    {
+      id: 3,
+      title: 'Криминальное чтиво',
+      rating: 10,
+      author: 'Квентин Тарантино'
+    },
+  ];
+
+  musicData = [
+    {
+      id: 1,
+      title: 'Начало',
+      rating: 8,
+      composer: 'Кристофер Нолан'
+    },
+    {
+      id: 2,
+      title: 'Самый лучший фильм',
+      rating: 1,
+      composer: 'Кирилл Кузин'
+    },
+    {
+      id: 3,
+      title: 'Криминальное чтиво',
+      rating: 10,
+      composer: 'Квентин Тарантино'
+    },
+  ];
+
+  showFullText($event) {
+    $event.target.parentElement.innerText = this.lorem;
   }
 
 }
