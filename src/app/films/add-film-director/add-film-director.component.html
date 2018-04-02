@@ -62,30 +62,7 @@
       </div>
     </div>
     <div class="col-12 col-md-6">
-      <div class="row justify-content-center">
-        <div class="col-8">
-          <div class="container">
-            <div class="row">
-              <p>Фотография</p>
-            </div>
-            <div class="row">
-              <img 
-                [src]="imgSrc" 
-                class="rounded"
-                alt="assets/no-photo.png">
-            </div>
-            <div class="row justify-content-center">
-              <button 
-                  type="button" 
-                  class="btn btn-danger mt-2"
-                  [class.invisible]="isButtonInvisible"
-                  (click)="removePhoto()">
-                Удалить фото
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <photo [imgSrc]="imgSrc" (change)="removePhoto()" imageType="Фото"></photo>
     </div>
   </div>
   <div class="row justify-content-center mt-4">

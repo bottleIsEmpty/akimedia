@@ -25,7 +25,6 @@
     "@angular/router": "^5.2.9",
     "@ng-bootstrap/ng-bootstrap": "^1.0.2",
     "angular-star-rating": "^3.0.8",
-    "angular-ui-carousel": "^0.1.10",
     "angular2-jwt": "^0.2.3",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.3",

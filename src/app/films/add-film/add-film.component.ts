@@ -9,7 +9,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 })
 export class AddFilmComponent {
 
-  imgSrc: String = 'assets/no-photo.png';
+  imgSrc: String = 'assets/inception.jpg';
   isButtonInvisible = true;
   form: FormGroup;
 
@@ -38,13 +38,19 @@ export class AddFilmComponent {
   }
 
   addGenre(genre: HTMLInputElement) {
-    this.genres.push(new FormControl(genre.value));
-    genre.value = '';
+    if (genre.value != '') {
+      this.genres.push(new FormControl(genre.value));
+      genre.value = '';
+    }
   }
 
-  removeGenre(genre: FormControl) {
-    const index = this.genres.controls.indexOf(genre);
-    this.genres.removeAt(index);
+  removeGenre(genre) {
+    for (let i = 0; i < this.genres.length; i++) {
+      if (this.genres.value[i] === genre) {
+        this.genres.removeAt(i);
+        break;
+      }
+    }
   }
 
   addPhoto(photo) {

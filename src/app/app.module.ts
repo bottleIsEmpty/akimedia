@@ -29,6 +29,8 @@ import { FilmDirectorListComponent } from './films/film-director-list/film-direc
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { ShortifyPipe } from './pipes/shortify.pipe';
+import { PhotoComponent } from './shared/photo/photo.component';
+import { PhotoInputComponent } from './photo-input/photo-input.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ShortifyPipe } from './pipes/shortify.pipe';
     FilmDirectorListComponent,
     UserProfileComponent,
     UserListComponent,
-    ShortifyPipe
+    ShortifyPipe,
+    PhotoComponent,
+    PhotoInputComponent,
   ],
   imports: [
     BrowserModule,
