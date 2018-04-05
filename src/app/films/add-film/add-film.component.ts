@@ -9,7 +9,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 })
 export class AddFilmComponent {
 
-  imgSrc: String = 'assets/inception.jpg';
+  imgSrc: String = 'assets/no-photo.png';
   isButtonInvisible = true;
   form: FormGroup;
 
@@ -53,39 +53,13 @@ export class AddFilmComponent {
     }
   }
 
-  addPhoto(photo) {
-    const file: File = photo.files[0];
-    if (!file.type.match('image/*')) {
-      alert('Некорректный файл!');
-      photo.value = '';
-      return false;
-    }
-
-    if (file.size > 2097152) {
-      alert('Файл не должен превышать 2 мб');
-      photo.value = '';
-      return false;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-        this.imgSrc = reader.result;
-        this.isButtonInvisible = false;
-    };
-    reader.readAsDataURL(file);
+  photoChanged(eventArgs) {
+    this.imgSrc = eventArgs.imgSrc;
   }
 
-  removePhoto() {
-    const photo: HTMLInputElement = <HTMLInputElement>(document.getElementById('director-photo'));
-    photo.value = '';
-    this.imgSrc = 'assets/no-photo.png';
-    this.isButtonInvisible = true;
-  }
-
-  submit() {
+  submit($event) {
+    console.log(event);
     this.form.reset();
-    this.removePhoto();
     this.SnackBar.open('Режиссёр успешно добавлен!', null, {
       duration: 2000
     });

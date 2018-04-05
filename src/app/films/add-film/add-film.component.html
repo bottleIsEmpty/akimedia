@@ -1,5 +1,5 @@
 <h3 class="pt-3 pb-3">Добавить фильм</h3>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" #f="ngForm">
   <div class="row">
     <div class="col-12 col-md-6">
       <div class="form-group">
@@ -109,15 +109,8 @@
           </li>
         </ul>
       </div>
-      <div class="form-group">
-        <label for="director-photo">Постер</label>
-        <input
-          type="file" 
-          class="form-control-file" 
-          id="director-photo" 
-          placeholder="Тарантино"
-          #photo
-          (change)="addPhoto(photo)">
+      <div class="from-group">
+        <photo-input (change)="photoChanged($event)"></photo-input>
       </div>
       <div class="form-group">
         <label for="description">Описание</label>
@@ -136,13 +129,14 @@
       </div>
     </div>
     <div class="col-12 col-md-6">
-      <photo [imgSrc]="imgSrc" (change)="deletePhoto()" imageType="Постер"></photo>
+      <photo [imgSrc]="imgSrc" (change)="photoChanged($event)" imageType="Постер"></photo>
     </div>
   </div>
   <div class="row justify-content-center mt-4 mb-4">
     <div class="col-12 col-md-6">
         <button
-          type="submit" 
+          type="submit"
+          click="f.ngSubmit.emit()" 
           class="btn btn-primary"
           [disabled]="form.invalid">
           Добавить фильм

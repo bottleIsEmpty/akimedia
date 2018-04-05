@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NouisliderModule } from 'ng2-nouislider';
 import { StarRatingModule } from 'angular-star-rating';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CarouselModule } from "angular2-carousel";
 
 import { AppComponent } from './app.component';
 import { FilmDirectorComponent } from './films/film-director/film-director.component';
@@ -30,7 +31,7 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 import { UserListComponent } from './users/user-list/user-list.component';
 import { ShortifyPipe } from './pipes/shortify.pipe';
 import { PhotoComponent } from './shared/photo/photo.component';
-import { PhotoInputComponent } from './photo-input/photo-input.component';
+import { PhotoInputComponent } from './shared/photo-input/photo-input.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { PhotoInputComponent } from './photo-input/photo-input.component';
     BrowserAnimationsModule,
     NouisliderModule,
     Ng2SmartTableModule,
+    CarouselModule,
     [MatSnackBarModule],
     StarRatingModule.forRoot(),
     NgbModule.forRoot(),

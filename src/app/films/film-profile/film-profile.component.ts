@@ -1,7 +1,9 @@
+import { MatSnackBar } from '@angular/material';
 import { Film } from './../shared/film.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../shared/films.service';
+
 
 @Component({
   selector: 'film-profile',
@@ -15,7 +17,8 @@ export class FilmProfileComponent implements OnInit {
 
   constructor(
     private filmsService: FilmsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -28,6 +31,26 @@ export class FilmProfileComponent implements OnInit {
 
     this.filmsService.getComments()
       .then(comments => this.comments = comments);
+  }
+
+  addComment(comment, filmRating) {
+    const commentValue = {
+      id: 1,
+      film: 1,
+      date: new Date(),
+      commentedBy: {
+          id: 1,
+          login: 'Михаил',
+          email: 'mikhail@gmail.com'
+      },
+      commentType: filmRating,
+      comment: comment
+    };
+
+    this.comments.push(commentValue);
+    this.snackBar.open('Комментарий успешно добавлен', null, {
+      duration: 2000
+    });
   }
 
 }
