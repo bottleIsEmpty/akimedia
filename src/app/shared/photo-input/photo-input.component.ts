@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'photo-input',
   template: `
-    <label for="director-photo">Постер</label>
+    <label for="director-photo">{{ imageType }}</label>
     <input
       type="file" 
       class="form-control-file" 
@@ -15,6 +15,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PhotoInputComponent {
 
+  @Input('imageType') imageType; 
   @Output('change') change = new EventEmitter();
 
   imgSrc: string;

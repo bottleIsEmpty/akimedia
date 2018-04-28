@@ -16,12 +16,12 @@
         </div>
       </li>
       <li routerLinkActive="active" ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Книги</a>
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Книги</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown02">
-          <a class="dropdown-item" href="#">Все книги</a>
-          <a class="dropdown-item" routerLink="directors">Писатели</a>
-          <a class="dropdown-item" href="#">Добавить книгу</a>
-          <a class="dropdown-item" href="#">Добавить писателя</a>
+          <a class="dropdown-item" routerLink="books">Все книги</a>
+          <a class="dropdown-item" routerLink="books/authors">Писатели</a>
+          <a class="dropdown-item" routerLink="books/add">Добавить книгу</a>
+          <a class="dropdown-item" routerLink="books/authors/add">Добавить писателя</a>
         </div>
       </li>
       <li routerLinkActive="active" ngbDropdown class="nav-item dropdown">

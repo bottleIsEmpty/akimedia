@@ -32,6 +32,12 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { ShortifyPipe } from './pipes/shortify.pipe';
 import { PhotoComponent } from './shared/photo/photo.component';
 import { PhotoInputComponent } from './shared/photo-input/photo-input.component';
+import { AddBookAuthorComponent } from './books/add-book-author/add-book-author.component';
+import { BooksListComponent } from './books/books-list/books-list.component';
+import { AddBookComponent } from './books/add-book/add-book.component';
+import { BookProfileComponent } from './books/book-profile/book-profile.component';
+import { BookAuthorListComponent } from './books/book-author-list/book-author-list.component';
+import { BookAuthorComponent } from './books/book-author/book-author.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +58,12 @@ import { PhotoInputComponent } from './shared/photo-input/photo-input.component'
     ShortifyPipe,
     PhotoComponent,
     PhotoInputComponent,
+    BookAuthorComponent,
+    AddBookAuthorComponent,
+    BookAuthorListComponent,
+    BooksListComponent,
+    AddBookComponent,
+    BookProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,6 +134,40 @@ import { PhotoInputComponent } from './shared/photo-input/photo-input.component'
             path: ':id',
             component: FilmProfileComponent
           },
+        ]
+      },
+      {
+        path: 'books',
+        children: [
+          {
+            path: '',
+            component: BooksListComponent
+          },
+          {
+            path: 'add',
+            component: AddBookComponent
+          },
+          {
+            path: 'authors',
+            children: [
+              {
+                path: '',
+                component: BookAuthorListComponent
+              },
+              {
+                path: 'add',
+                component: AddBookAuthorComponent
+              },
+              {
+                path: ':id',
+                component: BookAuthorComponent
+              }
+            ]
+          },
+          {
+            path: ':id',
+            component: BookProfileComponent
+          }
         ]
       }
     ])

@@ -9,7 +9,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 })
 export class AddFilmComponent {
 
-  imgSrc: String = 'assets/no-photo.png';
+  imgSrc = 'assets/no-photo.png';
   isButtonInvisible = true;
   form: FormGroup;
 
@@ -51,10 +51,6 @@ export class AddFilmComponent {
         break;
       }
     }
-  }
-
-  photoChanged(eventArgs) {
-    this.imgSrc = eventArgs.imgSrc;
   }
 
   submit($event) {
