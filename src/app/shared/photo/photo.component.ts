@@ -14,11 +14,11 @@ export class PhotoComponent {
 
   removePhoto() {
     this.imgSrc = 'assets/no-photo.png';
-    let photo = <HTMLInputElement>(document.getElementById('director-photo'));
+    let photo = <HTMLInputElement>(document.getElementById('photo'));
     photo.value = ''; 
-    this.change.emit({
-      imgSrc: this.imgSrc
-    });
+    // this.change.emit({
+    //   imgSrc: this.imgSrc
+    // });
 
     this.isButtonInvisible = true;
   }
