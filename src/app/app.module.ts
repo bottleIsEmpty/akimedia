@@ -31,7 +31,6 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 import { UserListComponent } from './users/user-list/user-list.component';
 import { ShortifyPipe } from './pipes/shortify.pipe';
 import { PhotoComponent } from './shared/photo/photo.component';
-import { PhotoInputComponent } from './shared/photo-input/photo-input.component';
 import { AddBookAuthorComponent } from './books/add-book-author/add-book-author.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
 import { AddBookComponent } from './books/add-book/add-book.component';
@@ -57,7 +56,6 @@ import { BookAuthorComponent } from './books/book-author/book-author.component';
     UserListComponent,
     ShortifyPipe,
     PhotoComponent,
-    PhotoInputComponent,
     BookAuthorComponent,
     AddBookAuthorComponent,
     BookAuthorListComponent,

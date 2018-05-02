@@ -1,6 +1,6 @@
 import { MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-film',

@@ -6,10 +6,19 @@
       </div>
       <div class="row justify-content-center mt-1">
         <img 
-          [src]="imgSrc || 'assets/no-photo.png'"
-          class="rounded">
+          [src]="imgSrc"
+          class="rounded"
+          name="photo">
       </div>
       <div class="row justify-content-center">
+        <label for="director-photo">{{ imageType }}</label>
+        <input
+          type="file" 
+          class="form-control-file" 
+          id="director-photo" 
+          placeholder="Тарантино"
+          #photo
+          (change)="addPhoto(photo)">
         <button 
           type="button" 
           class="btn btn-danger mt-2"
