@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SignUpComponent {
 
   form: FormGroup;
+  imgSrc = 'assets/no-photo.png';
 
   constructor(
     fb: FormBuilder,
