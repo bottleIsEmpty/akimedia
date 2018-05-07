@@ -3,7 +3,7 @@
   <div class="row mb-2">
     <div class="col-12 col-md-6">
       <div class="form-group">
-        <label for="author-name">Имя*</label>
+        <label for="director-name">Имя*</label>
         <input
           required
           minlength="2"
@@ -13,7 +13,7 @@
           name="firstName"
           type="text" 
           class="form-control" 
-          id="author-name" 
+          id="director-name" 
           placeholder="Александр">
           <div 
             *ngIf="firstName.invalid && firstName.touched" 
@@ -27,7 +27,7 @@
           </div>
       </div>
       <div class="form-group">
-        <label for="author-surname">Фамилия*</label>
+        <label for="director-surname">Фамилия*</label>
         <input
           required
           minlength="2"
@@ -37,7 +37,7 @@
           name="secondName" 
           type="text" 
           class="form-control" 
-          id="author-surname" 
+          id="director-surname" 
           placeholder="Пушкин">
           <div 
             *ngIf="secondName.invalid && secondName.touched" 
@@ -50,9 +50,70 @@
             </div>
           </div>
       </div>
+      <div class="form-group">
+        <label for="director-surname">Год рождения*</label>
+        <input
+          required
+          max="2000"
+          ngModel
+          #bornYear="ngModel"
+          name="bornYear" 
+          type="number" 
+          class="form-control" 
+          id="director-surname" 
+          placeholder="1799">
+          <div 
+            *ngIf="bornYear.invalid && bornYear.touched" 
+            class="alert alert-danger">
+            <div *ngIf="bornYear.errors.required">
+              Введите год рождения.
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="director-surname">Год смерти (опционально)</label>
+        <input
+          max="2018"
+          ngModel
+          #deathYear="ngModel"
+          name="deathYear" 
+          type="number" 
+          class="form-control" 
+          id="director-surname" 
+          placeholder="1837">
+          <div 
+            *ngIf="deathYear.touched && deathYear.value <= bornYear.value" 
+            class="alert alert-danger">
+            Год смерти должен быть больше года рождения.
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="director-surname">Страна*</label>
+        <input
+          required
+          minlength="3"
+          maxlength="100"
+          ngModel
+          #country="ngModel"
+          name="country" 
+          type="text" 
+          class="form-control" 
+          id="director-surname" 
+          placeholder="Россия">
+          <div 
+            class="alert alert-danger"
+            *ngIf="country.touched && country.invalid">
+            <div *ngIf="country.errors.required">
+              Введите название страны.
+            </div>
+            <div *ngIf="country.errors.minlength || country.errors.maxlength">
+              Введите корректное название страны.
+            </div>
+          </div>
+      </div>
     </div>
     <div class="col-12 col-md-6">
-      <photo [imgSrc]="imgSrc" (change)="removePhoto()" imageType="Фото"></photo>
+      <photo [imgSrc]="imgSrc" imageType="Фото"></photo>
     </div>
   </div>
   <div class="row justify-content-center mt-4">
@@ -64,5 +125,4 @@
         Добавить писателя</button>
     </div>
   </div>
-  
 </form>

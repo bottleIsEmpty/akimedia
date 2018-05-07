@@ -1,3 +1,143 @@
-<p>
-  add-book works!
-</p>
+
+<h3 class="pt-3 pb-3">Добавить книгу</h3>
+<form [formGroup]="form" #f="ngForm">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="title">Название*</label>
+        <input 
+          formControlName="title"
+          type="text" 
+          class="form-control" 
+          id="title">
+          <div 
+            class="alert alert-danger"
+            *ngIf="title.touched && title.invalid">
+            <div *ngIf="title.errors.required">
+              Введите название.
+            </div>
+            <div *ngIf="title.errors.minlength">
+              Название должно быть не короче {{ title.errors.minlength.requiredLength }} символов.
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="author">Автор*</label>
+        <input 
+          formControlName="author"
+          type="text" 
+          class="form-control" 
+          id="author">
+          <div 
+            class="alert alert-danger"
+            *ngIf="author.touched && author.invalid">
+            <div *ngIf="author.errors.required">
+              Введите имя автора.
+            </div>
+            <div *ngIf="author.errors.minlength">
+              Имя автора должно быть не короче {{ author.errors.minlength.requiredLength }} символов.
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="year">Год*</label>
+        <input 
+          formControlName="year"
+          type="number" 
+          class="form-control" 
+          id="year">
+          <div 
+            class="alert alert-danger"
+            *ngIf="year.touched && year.invalid">
+            <div *ngIf="year.errors.required">
+              Введите год выпуска.
+            </div>
+            <div *ngIf="year.errors.min">
+              Минимальный допустимый год - {{ year.errors.min.min }}.
+            </div>
+            <div *ngIf="year.errors.max">
+              Максимальный допустимый год - {{ year.errors.max.max }}.
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label>Тип*</label><br>
+        <div class="form-check-inline">
+          <input
+            formControlaName="type"
+            class="form-check-input" 
+            type="radio" 
+            value="0" 
+            name="type" 
+            id="book-radio" 
+            checked>
+          <label 
+            class="form-check-label" 
+            for="book-radio">
+            Книга
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <input
+            formControlaName="type" 
+            class="form-check-input" 
+            type="radio" 
+            value="0" 
+            name="type" 
+            id="comix-radio">
+          <label 
+            class="form-check-label" 
+            for="comix-radio">
+            Комикс/Манга
+          </label>
+        </div>  
+        <div class="form-check-inline">
+          <input
+            formControlaName="type" 
+            class="form-check-input" 
+            type="radio" 
+            value="0" 
+            name="type" 
+            id="journal-radio">
+          <label 
+            class="form-check-label" 
+            for="journal-radio">
+            Журнал
+          </label>
+        </div>  
+      </div>
+      <div class="form-group">
+        <!-- <genre></genre> -->
+      </div>
+      <div class="form-group">
+        <label for="description">Описание</label>
+        <textarea
+          formControlName="description"
+          class="form-control" 
+          rows="5" 
+          id="description"
+          value="">
+        </textarea>
+        <div 
+          class="alert alert-danger"
+          *ngIf="description.touched && description.invalid">
+          Описание должно быть не короче {{ description.errors.minlength.requiredLength }} символов.
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <photo [imgSrc]="imgSrc" imageType="Постер"></photo>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-4 mb-4">
+    <div class="col-12 col-md-6">
+        <button
+          type="submit"
+          click="f.ngSubmit.emit()" 
+          class="btn btn-primary"
+          [disabled]="form.invalid">
+          Добавить фильм
+        </button>
+    </div>
+  </div>
+</form>
