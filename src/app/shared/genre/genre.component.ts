@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'genre',
@@ -13,20 +14,36 @@ import { Component, OnInit } from '@angular/core';
   <ul id="genres-list" class="list-group">
     <li 
       class="list-group-item genre" 
-      *ngFor="let genre of genres.controls"
+      *ngFor="let genre of genres"
       (click)="removeGenre(genreItem.innerText)"
       #genreItem>
-      {{ genre.value }}
+      {{ genre }}
     </li>
   </ul>
   `,
   styleUrls: ['./genre.component.scss']
 })
-export class GenreComponent implements OnInit {
+export class GenreComponent {
 
-  constructor() { }
+  genres: String[] = [];
+  @Output('change') change = new EventEmitter<String[]>();
 
-  ngOnInit() {
+  addGenre(genre: HTMLInputElement) {
+    if (genre.value !== '') {
+      this.genres.push(genre.value);
+      this.change.emit(this.genres);
+      genre.value = '';
+    }
+  }
+
+  removeGenre(genre) {
+    for (let i = 0; i < this.genres.length; i++) {
+      if (this.genres[i] === genre) {
+        this.genres.splice(i, 1);
+        this.change.emit(this.genres);
+        return;
+      }
+    }
   }
 
 }

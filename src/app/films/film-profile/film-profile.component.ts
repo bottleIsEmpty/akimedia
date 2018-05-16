@@ -1,8 +1,8 @@
 import { MatSnackBar } from '@angular/material';
-import { Film } from './../shared/film.model';
+import { Film } from '../../models/films/film.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilmsService } from '../shared/films.service';
+import { FilmsService } from '../../services/films/films.service';
 
 
 @Component({

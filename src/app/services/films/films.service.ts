@@ -1,6 +1,6 @@
-import { FILMS } from './mock-films';
+import { FILMS } from './../../films/shared/mock-films';
 import { Injectable } from '@angular/core';
-import { COMMENTS } from './mock-comments';
+import { COMMENTS } from './../../films/shared/mock-comments';
 
 @Injectable()
 export class FilmsService {

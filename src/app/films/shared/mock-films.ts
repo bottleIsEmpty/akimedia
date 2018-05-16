@@ -1,4 +1,4 @@
-import { Film } from './film.model';
+import { Film } from '../../models/films/film.model';
 
 export const FILMS: Film[] = [
   {
@@ -15,7 +15,8 @@ export const FILMS: Film[] = [
     director: {
       id: 1,
       name: 'Кристофер',
-      surname: 'Нолан'
+      surname: 'Нолан',
+      country: 'США'
     },
     logo: 'assets/inception.jpg',
     // tslint:disable-next-line:max-line-length
@@ -33,7 +34,8 @@ export const FILMS: Film[] = [
     director: {
       id: 2,
       name: 'Роберт',
-      surname: 'Земекис'
+      surname: 'Земекис',
+      country: 'США'
     },
     logo: 'assets/forrest-gump.jpg',
     description: `
@@ -55,7 +57,8 @@ export const FILMS: Film[] = [
     director: {
       id: 1,
       name: 'Кристофер',
-      surname: 'Нолан'
+      surname: 'Нолан',
+      country: 'США'
     },
     logo: 'assets/prestige.jpg',
     // tslint:disable-next-line:max-line-length

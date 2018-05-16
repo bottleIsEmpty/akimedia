@@ -1,7 +1,7 @@
 import { AuthService } from './services/auth.service';
 import { MockBackend } from '@angular/http/testing';
 import { fakeBackendProvider } from './helpers/mock-backend';
-import { FilmsService } from './films/shared/films.service';
+import { FilmsService } from './services/films/films.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,6 +38,7 @@ import { BookProfileComponent } from './books/book-profile/book-profile.componen
 import { BookAuthorListComponent } from './books/book-author-list/book-author-list.component';
 import { BookAuthorComponent } from './books/book-author/book-author.component';
 import { GenreComponent } from './shared/genre/genre.component';
+import { BooksService } from './services/books/books.service';
 
 @NgModule({
   declarations: [
@@ -174,6 +175,7 @@ import { GenreComponent } from './shared/genre/genre.component';
   ],
   providers: [
     FilmsService,
+    BooksService,
     AuthService,
 
     // Mock backend

@@ -1,4 +1,4 @@
-import { Director } from './director.model';
+import { FilmDirector } from './film-director.model';
 
 export class Film {
     id: number;
@@ -6,7 +6,7 @@ export class Film {
     year: number;
     type: boolean;
     genres: string[];
-    director: Director;
+    director: FilmDirector;
     logo: string;
     description: string;
 }

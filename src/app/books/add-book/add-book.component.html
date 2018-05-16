@@ -19,6 +19,9 @@
             <div *ngIf="title.errors.minlength">
               Название должно быть не короче {{ title.errors.minlength.requiredLength }} символов.
             </div>
+            <div *ngIf="title.errors.minlength">
+              Название должно быть не короче {{ title.errors.minlength.requiredLength }} символов.
+            </div>
           </div>
       </div>
       <div class="form-group">
@@ -107,7 +110,7 @@
         </div>  
       </div>
       <div class="form-group">
-        <!-- <genre></genre> -->
+        <genre (change)="this.genresValues = $event"></genre>
       </div>
       <div class="form-group">
         <label for="description">Описание</label>
@@ -135,8 +138,9 @@
           type="submit"
           click="f.ngSubmit.emit()" 
           class="btn btn-primary"
-          [disabled]="form.invalid">
-          Добавить фильм
+          [disabled]="form.invalid"
+          (click)="addBook()">
+          Добавить книгу
         </button>
     </div>
   </div>

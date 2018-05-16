@@ -10,7 +10,6 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl, FormsModule
 export class AddFilmComponent {
 
   imgSrc = 'assets/no-photo.png';
-  isButtonInvisible = true;
   form: FormGroup;
 
   constructor(public SnackBar: MatSnackBar, fb: FormBuilder) {
