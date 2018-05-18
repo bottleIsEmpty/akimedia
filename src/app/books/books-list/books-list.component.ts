@@ -9,8 +9,6 @@ import { BooksService } from '../../services/books/books.service';
 })
 export class BooksListComponent implements OnInit {
 
-  slider = [1930, 1990];
-
   books: Book[];
 
   constructor(private booksService: BooksService) { }

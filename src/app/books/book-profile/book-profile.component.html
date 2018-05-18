@@ -1,3 +1,105 @@
-<p>
-  book-profile works!
-</p>
+<ng-container *ngIf="book">
+  <div class="row">
+    <div class="col-12">
+      <h3>{{ book.title }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <img 
+        class="rounded"
+        [src]="book.logo">
+    </div>
+    <div class="col-8">
+      <ul>
+        <div class="row">
+          <li class="col p-0">
+            <b>Автор: </b>{{ book.author.name + ' ' + book.author.surname }}
+          </li>
+          <li class="col p-0">
+            <star-rating-comp [labelText]="'Рейтинг: '" [step]="0.1" [size]="'medium'" [starType]="'svg'" [rating]="2.63"></star-rating-comp>
+          </li>
+        </div>
+        <div class="row">
+          <li><b>Год: </b>{{ book.year }}</li>
+        </div>
+        <div class="row">
+          <li><b>Жанры: </b>{{ book.genres.join(', ') }}</li>
+        </div>
+        <div class="row">
+          <li><b>Тип: </b>{{ book.type ? 'Фильм' : 'Сериал' }}</li>
+        </div>
+        <div class="row">
+          <li><b>Описание: </b>{{ book.description }}</li>
+        </div>
+      </ul>
+      
+    </div>
+  </div>
+  <h4 class="mt-3">Отзывы о Книге (3):</h4>
+  <div 
+    *ngFor="let comment of comments"
+    class="card mt-3">
+    <div class="card-header">
+      <a [routerLink]="['/users', comment.commentedBy.id]">{{ comment.commentedBy.login }}</a>, {{ comment.date | date }}
+    </div>
+    <div 
+      class="card-body"
+      [style.backgroundColor]="(comment.commentType === -1) ? '#f7cfcf' : (comment.commentType === 0) ? 'white' : '#d7fbd7'">
+      {{ comment.comment }}
+    </div>
+  </div>
+  <form #f="ngForm" (submit)="addComment(comment.value, bookRating.value)">
+    <div class="form-group">
+      <label for="comment">
+        <h4>Оставить отзыв:</h4>
+      </label>
+      <textarea
+        ngModel
+        #comment="ngModel" 
+        class="form-control" 
+        name="comment" 
+        id="comment" 
+        rows="5"></textarea>
+    </div>
+    <div class="from-group">
+      <div class="form-check form-check-inline">
+        <input
+          ngModel
+          #bookRating="ngModel"
+          class="form-check-input" 
+          type="radio" 
+          name="rating-radio" 
+          id="rating-like" 
+          value="-1">
+        <label class="form-check-label" for="rating-like">Книга понравилась</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          ngModel
+          #bookRating="ngModel" 
+          class="form-check-input" 
+          type="radio" 
+          name="rating-radio" 
+          id="rating-middle" 
+          value="0">
+        <label class="form-check-label" for="rating-middle">Не могу определиться</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          ngModel
+          #bookRating="ngModel"  
+          class="form-check-input" 
+          type="radio" 
+          name="rating-radio"
+          id="rating-dislike"
+          value="1">
+        <label class="form-check-label" for="rating-dislike">Книга не понравилась</label>
+      </div>
+    </div>
+    <button type="submit"
+      class="btn btn-primary">
+      Сохранить
+    </button>
+  </form>
+</ng-container>

@@ -39,6 +39,7 @@ import { BookAuthorListComponent } from './books/book-author-list/book-author-li
 import { BookAuthorComponent } from './books/book-author/book-author.component';
 import { GenreComponent } from './shared/genre/genre.component';
 import { BooksService } from './services/books/books.service';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { BooksService } from './services/books/books.service';
     AddBookComponent,
     BookProfileComponent,
     GenreComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
