@@ -1,12 +1,17 @@
 <div class="card search mb-4">
   <div class="card-header">
-    Поиск
+    Детальный поиск
   </div>
   <div class="card-body">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="search()">
       <div class="form-group">
         <label for="product-type">Что ищем?</label>
-        <select id="product-type" class="form-control" (change)="changeProduct(productType.value)" #productType>
+        <select 
+          id="product-type" 
+          class="form-control" 
+          (change)="changeProduct(productType.value)"
+          formControlName="type"
+          #productType>
           <option value="">Я не уверен(а)</option>
           <option value="film">Фильм</option>
           <option value="book">Книга</option>
@@ -14,33 +19,48 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="author">Имя автора</label>
-        <input type="text" class="form-control" id="author">
+        <label for="title">Название</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="title"
+          formControlName="title">
       </div>
-      <div class="from-group">
+      <div class="form-group">
+        <label for="author">Имя автора</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="author"
+          formControlName="author">
+      </div>
+      <div class="form-group">
         <label for="year">Год</label>
-        <nouislider 
-        [connect]="true" 
-        [min]="1900" 
-        [max]="2017" 
-        [step]="1" 
-        [tooltips]="[true, true]"
-        [(ngModel)]="slider" 
-        style="margin-top: 40px;"
-        name="year">
+        <nouislider  
+          [min]="minSliderValue" 
+          [max]="maxSliderValue" 
+          [step]="1" 
+          [tooltips]="[true, true]"
+          [formControl]="form.controls.year" 
+          style="margin-top: 40px;"
+          name="year">
       </nouislider>
       </div>
       <div class="form-group">
         <label for="genre">Жанр</label>
-        <select id="subject" class="form-control">
-            <option value="">Я не уверен(а)</option>
-            <option value="film">Фильм</option>
-            <option value="book">Книга</option>
-            <option value="music">Музыка</option>
+        <select 
+          id="subject" 
+          class="form-control"
+          formControlName="genre">
+            <option *ngFor="let genre of genresList">{{ genre }}</option>
           </select>
       </div>
       <div class="text-center">
-        <button class="btn">Поиск</button>
+        <button 
+          class="btn"
+          type="submit">
+          Поиск
+        </button>
       </div>
     </form>
   </div>

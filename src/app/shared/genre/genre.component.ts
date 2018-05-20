@@ -3,15 +3,16 @@ import { FormArray, FormControl } from '@angular/forms';
 import { GENRES } from '../mock-genres';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'genre',
   template: `
     <label for="genres">Жанр(ы)</label>
-    <select class="form-control" name="genres" (change)="addGenre(genre)" #genre>
+    <select class="form-control" name="genres" (change)="addGenre(genre.value)" #genre>
       <option *ngFor="let genre of genresList">{{ genre }}</option>
     </select>
     <ul id="genres-list" class="list-group">
-      <li 
-        class="list-group-item genre" 
+      <li
+        class="list-group-item genre"
         *ngFor="let genre of genres"
         (click)="removeGenre(genreItem.innerText)"
         #genreItem>
@@ -21,41 +22,42 @@ import { GENRES } from '../mock-genres';
   `,
   styleUrls: ['./genre.component.scss']
 })
-export class GenreComponent implements OnInit{
+export class GenreComponent implements OnInit {
 
   genres: String[] = [];
   // genresList: String[];
-  @Input('type') type: String; 
-  @Output('change') change = new EventEmitter<String[]>();
+  @Input('type') type: String;
+  @Output('genreChanged') genreChanged = new EventEmitter<String[]>();
   public genresList: String[];
 
   ngOnInit() {
-    switch(this.type) {
-      case 'films': 
-        this.genresList = GENRES.filmGenres
+    switch (this.type) {
+      case 'films':
+        this.genresList = GENRES.filmGenres;
         break;
       case 'books':
-        this.genresList = GENRES.bookGenres
+        this.genresList = GENRES.bookGenres;
         break;
       case 'music':
-        this.genresList = GENRES.musicGenres
+        this.genresList = GENRES.musicGenres;
         break;
     }
   }
 
-  addGenre(genre: HTMLInputElement) {
-    if (genre.value !== '') {
-      this.genres.push(genre.value);
-      this.change.emit(this.genres);
-      genre.value = '';
-    }
+  addGenre(genre: String) {
+    // if (genre.value !== '') {
+    //   this.genres.push(genre.value);
+    //   this.change.emit(this.genres);
+    // }
+    this.genres.push(genre);
+    this.genreChanged.emit(this.genres);
   }
 
-  removeGenre(genre) {
+  removeGenre(genre: String) {
     for (let i = 0; i < this.genres.length; i++) {
       if (this.genres[i] === genre) {
         this.genres.splice(i, 1);
-        this.change.emit(this.genres);
+        this.genreChanged.emit(this.genres);
         return;
       }
     }

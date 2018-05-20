@@ -1,6 +1,6 @@
 
 <h3 class="pt-3 pb-3">Добавить книгу</h3>
-<form [formGroup]="form" #f="ngForm">
+<form [formGroup]="form" (ngSubmit)="addBook()">
   <div class="row">
     <div class="col-12 col-md-6">
       <div class="form-group">
@@ -67,11 +67,11 @@
         <label>Тип*</label><br>
         <div class="form-check-inline">
           <input
-            formControlaName="type"
             class="form-check-input" 
             type="radio" 
-            value="0" 
+            value="book" 
             name="type" 
+            formControlName="type" 
             id="book-radio" 
             checked>
           <label 
@@ -82,11 +82,11 @@
         </div>
         <div class="form-check-inline">
           <input
-            formControlaName="type" 
             class="form-check-input" 
             type="radio" 
-            value="0" 
-            name="type" 
+            value="comix" 
+            name="type"
+            formControlName="type"  
             id="comix-radio">
           <label 
             class="form-check-label" 
@@ -96,11 +96,11 @@
         </div>  
         <div class="form-check-inline">
           <input
-            formControlaName="type" 
             class="form-check-input" 
             type="radio" 
-            value="0" 
-            name="type" 
+            value="journal" 
+            name="type"
+            formControlName="type"  
             id="journal-radio">
           <label 
             class="form-check-label" 
@@ -110,7 +110,7 @@
         </div>  
       </div>
       <div class="form-group">
-        <genre (change)="this.genresValues = $event" [type]="'books'"></genre>
+        <genre (genreChanged)="updateGenres($event)" [type]="'books'"></genre>
       </div>
       <div class="form-group">
         <label for="description">Описание</label>
@@ -136,10 +136,8 @@
     <div class="col-12 col-md-6">
         <button
           type="submit"
-          click="f.ngSubmit.emit()" 
           class="btn btn-primary"
-          [disabled]="form.invalid"
-          (click)="addBook()">
+          [disabled]="form.invalid">
           Добавить книгу
         </button>
     </div>

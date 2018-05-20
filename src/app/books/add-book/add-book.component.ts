@@ -8,42 +8,48 @@ import { FormArray, FormGroup, FormBuilder, FormControl, Validators } from '@ang
 })
 export class AddBookComponent {
 
-    imgSrc = 'assets/no-photo.png';
-    form: FormGroup;
-    genresValues: String[] = [];
+  imgSrc = 'assets/no-photo.png';
+  form: FormGroup;
+  genresValues: String[] = [];
 
-    constructor(fb: FormBuilder) {
-      this.form = fb.group({
-        title: ['', [
-            Validators.required,
-            Validators.minLength(2)
-          ]
-        ],
-        author: ['', [
-            Validators.required,
-            Validators.minLength(2),
-          ]
-        ],
-        year: ['', [
-            Validators.required,
-            Validators.min(0),
-            Validators.max(new Date().getFullYear())
-          ]
-        ],
-        type: [],
-        //genres: fb.array([]),
-        description: ['', Validators.minLength(50)]
-      })
-    }
+  constructor(fb: FormBuilder) {
+    this.form = fb.group({
+      title: ['', [
+          Validators.required,
+          Validators.minLength(2)
+        ]
+      ],
+      author: ['', [
+          Validators.required,
+          Validators.minLength(2),
+        ]
+      ],
+      year: ['', [
+          Validators.required,
+          Validators.min(0),
+          Validators.max(new Date().getFullYear())
+        ]
+      ],
+      type: [],
+      genres: [[]],
+      description: ['', Validators.minLength(50)]
+    });
+  }
 
-    addBook() {
-      console.log(this.genresValues);
-    };
+  addBook() {
+    // this.form.get('genres').setValue(this.genresValues);
+    console.log(this.genresValues);
+    console.log(this.form.value);
+  }
+
+  updateGenres(genres) {
+    console.log(genres);
+  }
 
   // Геттеры
 
   get genres() {
-    return <FormArray>this.form.get('genres');
+    return this.form.get('genres');
   }
 
   get title() {

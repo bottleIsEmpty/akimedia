@@ -37,7 +37,7 @@ export class AddFilmComponent {
   }
 
   addGenre(genre: HTMLInputElement) {
-    if (genre.value != '') {
+    if (genre.value !== '') {
       this.genres.push(new FormControl(genre.value));
       genre.value = '';
     }
