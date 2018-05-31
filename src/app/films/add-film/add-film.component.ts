@@ -36,22 +36,10 @@ export class AddFilmComponent {
     });
   }
 
-  addGenre(genre: HTMLInputElement) {
-    if (genre.value !== '') {
-      this.genres.push(new FormControl(genre.value));
-      genre.value = '';
-    }
+  updateGenres(genres) {
+    console.log(genres);
   }
-
-  removeGenre(genre) {
-    for (let i = 0; i < this.genres.length; i++) {
-      if (this.genres.value[i] === genre) {
-        this.genres.removeAt(i);
-        break;
-      }
-    }
-  }
-
+  
   submit($event) {
     console.log(event);
     this.form.reset();

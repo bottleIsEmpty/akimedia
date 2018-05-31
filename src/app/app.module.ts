@@ -40,6 +40,12 @@ import { BookAuthorComponent } from './books/book-author/book-author.component';
 import { GenreComponent } from './shared/genre/genre.component';
 import { BooksService } from './services/books/books.service';
 import { SearchComponent } from './shared/search/search.component';
+import { AddMusicComponent } from './music/add-music/add-music.component';
+import { AddMusicComposerComponent } from './music/add-music-composer/add-music-composer.component';
+import { MusicComposerComponent } from './music/music-composer/music-composer.component';
+import { MusicComposerListComponent } from './music/music-composer-list/music-composer-list.component';
+import { MusicProfileComponent } from './music/music-profile/music-profile.component';
+import { MusicListComponent } from './music/music-list/music-list.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +73,12 @@ import { SearchComponent } from './shared/search/search.component';
     BookProfileComponent,
     GenreComponent,
     SearchComponent,
+    AddMusicComponent,
+    AddMusicComposerComponent,
+    MusicComposerComponent,
+    MusicComposerListComponent,
+    MusicProfileComponent,
+    MusicListComponent,
   ],
   imports: [
     BrowserModule,
@@ -170,6 +182,40 @@ import { SearchComponent } from './shared/search/search.component';
           {
             path: ':id',
             component: BookProfileComponent
+          }
+        ]
+      },
+      {
+        path: 'music',
+        children: [
+          {
+            path: '',
+            component: MusicListComponent
+          },
+          {
+            path: 'add',
+            component: AddMusicComponent
+          },
+          {
+            path: 'composers',
+            children: [
+              {
+                path: '',
+                component: MusicComposerListComponent
+              },
+              {
+                path: 'add',
+                component: AddMusicComposerComponent
+              },
+              {
+                path: ':id',
+                component: MusicComposerComponent
+              }
+            ]
+          },
+          {
+            path: ':id',
+            component: MusicProfileComponent
           }
         ]
       }

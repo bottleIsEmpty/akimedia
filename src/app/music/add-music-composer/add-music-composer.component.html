@@ -1,9 +1,9 @@
-<h3 class="pt-3 pb-3">Добавить режиссёра</h3>
+<h3 class="pt-3 pb-3">Добавить композитора</h3>
 <form #f="ngForm" (ngSubmit)="submit(f)">
   <div class="row mb-2">
     <div class="col-12 col-md-6">
       <div class="form-group">
-        <label for="director-name">Имя*</label>
+        <label for="composer-name">Имя*</label>
         <input
           required
           minlength="2"
@@ -13,8 +13,8 @@
           name="firstName"
           type="text" 
           class="form-control" 
-          id="director-name" 
-          placeholder="Квентин">
+          id="composer-name" 
+          placeholder="Пётр">
           <div 
             *ngIf="firstName.invalid && firstName.touched" 
             class="alert alert-danger">
@@ -27,7 +27,7 @@
           </div>
       </div>
       <div class="form-group">
-        <label for="director-surname">Фамилия*</label>
+        <label for="composer-surname">Фамилия*</label>
         <input
           required
           minlength="2"
@@ -37,8 +37,8 @@
           name="secondName" 
           type="text" 
           class="form-control" 
-          id="director-surname" 
-          placeholder="Тарантино">
+          id="composer-surname" 
+          placeholder="Чайковский">
           <div 
             *ngIf="secondName.invalid && secondName.touched" 
             class="alert alert-danger">
@@ -51,18 +51,17 @@
           </div>
       </div>
       <div class="form-group">
-        <label for="director-born-year">Год рождения*</label>
+        <label for="composer-born-year">Год рождения*</label>
         <input
           required
-          min="1850"
           max="2000"
           ngModel
           #bornYear="ngModel"
           name="bornYear" 
           type="number" 
           class="form-control" 
-          id="director-born-year" 
-          placeholder="1960">
+          id="composer-born-year" 
+          placeholder="1799">
           <div 
             *ngIf="bornYear.invalid && bornYear.touched" 
             class="alert alert-danger">
@@ -72,17 +71,16 @@
           </div>
       </div>
       <div class="form-group">
-        <label for="director-death-year">Год смерти (опционально)</label>
+        <label for="composer-death-year">Год смерти (опционально)</label>
         <input
-          min="1900"
           max="2018"
           ngModel
           #deathYear="ngModel"
           name="deathYear" 
           type="number" 
           class="form-control" 
-          id="director-death-year" 
-          placeholder="1960">
+          id="composer-death-year" 
+          placeholder="1837">
           <div 
             *ngIf="deathYear.touched && deathYear.value <= bornYear.value" 
             class="alert alert-danger">
@@ -90,7 +88,7 @@
           </div>
       </div>
       <div class="form-group">
-        <label for="director-country">Страна*</label>
+        <label for="composer-country">Страна*</label>
         <input
           required
           minlength="3"
@@ -100,8 +98,8 @@
           name="country" 
           type="text" 
           class="form-control" 
-          id="director-country" 
-          placeholder="США">
+          id="composer-country" 
+          placeholder="Россия">
           <div 
             class="alert alert-danger"
             *ngIf="country.touched && country.invalid">
@@ -111,7 +109,6 @@
             <div *ngIf="country.errors.minlength || country.errors.maxlength">
               Введите корректное название страны.
             </div>
-            
           </div>
       </div>
     </div>
@@ -125,8 +122,7 @@
         [disabled]="f.invalid" 
         type="submit" 
         class="btn btn-primary">
-        Добавить режиссёра</button>
+        Добавить писателя</button>
     </div>
   </div>
-  
 </form>

@@ -92,22 +92,7 @@
         </div>  
       </div>
       <div class="form-group">
-        <label for="genres">Жанр(ы)</label>
-        <input
-          type="text" 
-          class="form-control" 
-          id="genres" 
-          (keyup.enter)="addGenre(genre)" 
-          #genre>
-        <ul id="genres-list" class="list-group">
-          <li 
-            class="list-group-item genre" 
-            *ngFor="let genre of genres.controls"
-            (click)="removeGenre(genreItem.innerText)"
-            #genreItem>
-            {{ genre.value }}
-          </li>
-        </ul>
+        <genre (genreChanged)="updateGenres($event)" [type]="'films'"></genre>
       </div>
       <div class="form-group">
         <label for="description">Описание</label>

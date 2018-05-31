@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.form = fb.group({
-      type: [''],
+      type: [],
       title: [],
       author: [],
       year: [[1100, 1900]],
@@ -31,10 +31,10 @@ export class SearchComponent implements OnInit {
     this.changeProduct(this.productType);
   }
 
-  changeProduct(productType) {
-    this.type = productType;
+  changeProduct(productTypeName) {
+    this.type = productTypeName;
 
-    switch (productType) {
+    switch (productTypeName) {
       case 'film':
         this.genresList = GENRES.filmGenres;
         this.minSliderValue = 1895;
@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
   }
 
   set type(value) {
-    this.form.get('type').setValue(this.productType);
+    this.form.get('type').setValue(value);
+  
   }
-
 }
