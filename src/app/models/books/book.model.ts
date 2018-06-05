@@ -1,12 +1,6 @@
 import { BookAuthor } from "./book-author.model";
+import { Product } from "../product.model";
 
-export class Book {
-    id: number;
-    title: string;
-    year: number;
-    type: number;
-    genres: string[];
+export class Book extends Product {
     author: BookAuthor;
-    logo: string;
-    description: string;
 }

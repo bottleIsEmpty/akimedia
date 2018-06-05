@@ -11,9 +11,13 @@
         <img src="assets/no-photo.png" class="img img-tubmnail">
       </div>
       <div class="col-9">
-        <h3>
-          <a routerLink="/films/directors/1">Квентин Тарантино</a>
-        </h3>
+          <div class="col-9">
+              <ul>
+                <li><b>Имя: </b><a [routerLink]="['/films/directors/', 1]">Квентин Тарантино</a></li>
+                <li><b>Годы жизни: </b>1960</li>
+                <li><b>Страна: </b>США</li>
+              </ul>
+            </div>
       </div>
     </div>
   </div>

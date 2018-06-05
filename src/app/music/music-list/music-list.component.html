@@ -1,3 +1,38 @@
-<p>
-  music-list works!
-</p>
+<div class="row">
+  <div class="col-12">
+    <h3 class="pt-3 pb-3">Музыка</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-lg-4">
+    <search productType="music"></search>
+  </div>
+  <div class="col-12 col-lg-8">
+      <div class="container">
+        <div 
+          *ngFor="let music of musics" 
+          class="row content-block p-2 mb-2">
+          <div class="col-3">
+            <img [src]="music.logo" class="img img-tubmnail">
+          </div>
+          <div class="col-9">
+            <ul>
+              <li><b>Название: </b><a [routerLink]="['/music', music.id]">{{ music.title }}</a></li>
+              <li><b>Автор: </b>{{ music.author.name + ' ' + music.author.surname }}</li>
+              <li><b>Описание: </b>{{ music.description }}</li>
+            </ul>
+          </div>
+        </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link active" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+  </div>
+</div>
+  

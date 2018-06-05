@@ -99,6 +99,8 @@ export const GENRES = {
         'Юмор'
     ],
     musicGenres: [
-
+        'Рок',
+        'Классика',
+        'Кантри'
     ]
 };

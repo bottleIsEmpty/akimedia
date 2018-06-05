@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/books/book.model';
 import { BooksService } from '../../services/books/books.service';
-
+  
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',

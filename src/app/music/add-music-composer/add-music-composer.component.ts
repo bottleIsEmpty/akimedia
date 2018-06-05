@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddMusicComposerComponent implements OnInit {
 
+  imgSrc = 'assets/no-photo.png';
+
   constructor() { }
+
+  photoChanged(eventArgs) {
+    this.imgSrc = eventArgs.imgSrc;
+  }
 
   ngOnInit() {
   }

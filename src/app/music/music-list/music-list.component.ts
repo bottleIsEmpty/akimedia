@@ -5,11 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './music-list.component.html',
   styleUrls: ['./music-list.component.scss']
 })
-export class MusicListComponent implements OnInit {
+export class MusicListComponent {
 
-  constructor() { }
+  // musics: Music[];
 
-  ngOnInit() {
-  }
+  // constructor(private musicService: MusicService) { }
+
+  // ngOnInit() {
+  //   this.musicService.getBooks()
+  //     .then(books => this.musics = books);
+  // }
 
 }

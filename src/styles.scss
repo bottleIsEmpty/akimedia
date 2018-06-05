@@ -40,8 +40,9 @@ img {
     max-width: 300px;
 }
 
-ul {
+.container ul {
     padding: 0;
+    line-height: 2em;
     list-style: none;
 }
 
@@ -75,4 +76,4 @@ ul {
     box-shadow: 0 0 0 0.2rem #ffa2a2;
     cursor: pointer;
     transition: 0.5s;
-} 
+}
