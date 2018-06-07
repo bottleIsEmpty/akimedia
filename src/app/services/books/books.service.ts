@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BOOKS } from '../../books/shared/mock-books';
-import { COMMENTS } from '../../films/shared/mock-comments';
+import { BOOKS } from '../../components/books/shared/mock-books';
+import { COMMENTS } from '../../components/films/shared/mock-comments';
 
 @Injectable()
 export class BooksService {
@@ -14,7 +14,7 @@ export class BooksService {
   }
 
   getComments() {
-    return Promise.resolve(COMMENTS)
+    return Promise.resolve(COMMENTS);
   }
 
 }

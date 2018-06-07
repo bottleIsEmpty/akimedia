@@ -1,9 +1,12 @@
-import { FILMS } from './../../films/shared/mock-films';
+import { Http } from '@angular/http';
+import { FILMS } from './../../components/films/shared/mock-films';
 import { Injectable } from '@angular/core';
-import { COMMENTS } from './../../films/shared/mock-comments';
+import { COMMENTS } from './../../components/films/shared/mock-comments';
 
 @Injectable()
 export class FilmsService {
+
+  constructor() {}
 
   getFilms() {
     return Promise.resolve(FILMS);
@@ -14,7 +17,7 @@ export class FilmsService {
   }
 
   getComments() {
-    return Promise.resolve(COMMENTS)
+    return Promise.resolve(COMMENTS);
   }
 
 }

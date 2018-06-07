@@ -1,7 +1,7 @@
-import { FilmsService } from '../../services/films/films.service';
+import { FilmsService } from '../../../services/films/films.service';
 import { NouisliderModule } from 'ng2-nouislider';
 import { Component, OnInit } from '@angular/core';
-import { Film } from '../../models/films/film.model';
+import { Film } from '../../../models/films/film.model';
 
 @Component({
   selector: 'app-films-list',

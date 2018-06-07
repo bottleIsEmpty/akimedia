@@ -1,22 +1,21 @@
-import { MatSnackBar } from '@angular/material';
-import { Film } from '../../models/films/film.model';
 import { Component, OnInit } from '@angular/core';
+import { BooksService } from '../../../services/books/books.service';
 import { ActivatedRoute } from '@angular/router';
-import { FilmsService } from '../../services/films/films.service';
-
+import { MatSnackBar } from '@angular/material';
+import { Book } from '../../../models/books/book.model';
 
 @Component({
-  selector: 'film-profile',
-  templateUrl: './film-profile.component.html',
-  styleUrls: ['./film-profile.component.scss']
+  selector: 'app-book-profile',
+  templateUrl: './book-profile.component.html',
+  styleUrls: ['./book-profile.component.scss']
 })
-export class FilmProfileComponent implements OnInit {
+export class BookProfileComponent implements OnInit {
 
-  film: Film;
+  book: Book;
   comments = [];
 
   constructor(
-    private filmsService: FilmsService,
+    private booksService: BooksService,
     private route: ActivatedRoute,
     public snackBar: MatSnackBar,
   ) { }
@@ -25,11 +24,11 @@ export class FilmProfileComponent implements OnInit {
     this.route.paramMap
       .subscribe(params => {
         const id = +params.get('id');
-        this.filmsService.getFilm(id)
-          .then(film => this.film = film );
+        this.booksService.getBook(id)
+          .then(book => this.book = book );
       });
 
-    this.filmsService.getComments()
+    this.booksService.getComments()
       .then(comments => this.comments = comments);
   }
 

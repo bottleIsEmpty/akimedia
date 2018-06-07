@@ -1,4 +1,4 @@
-import { Film } from '../../models/films/film.model';
+import { Film } from '../../../models/films/film.model';
 
 export const FILMS: Film[] = [
   {
