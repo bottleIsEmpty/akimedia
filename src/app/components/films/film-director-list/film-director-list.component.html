@@ -5,6 +5,9 @@
 </div>
 <div class="col-12">
   <div class="container">
+    <ng-container *ngIf="!directors">
+      Загрузка...
+    </ng-container>
     <div
       class="row content-block p-2 mb-2"
       *ngFor="let director of directors">
@@ -15,7 +18,13 @@
           <div class="col-9">
             <ul>
               <li><b>Имя: </b><a [routerLink]="['/films/directors/', director.id]">{{ director.name + ' ' + director.surname }}</a></li>
-              <li><b>Годы жизни: </b>{{ director.bornYear }}</li>
+              <li>
+                <b>Годы жизни: </b>
+                {{ director.bornYear }} 
+                <ng-container *ngIf="director.deathYear"> 
+                  - {{ director.deathYear }}
+                </ng-container>
+              </li>
               <li><b>Страна: </b>{{ director.country }}</li>
             </ul>
           </div>

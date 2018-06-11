@@ -15,7 +15,6 @@ export class FilmDirectorListComponent implements OnInit {
 
   ngOnInit() {
     this.filmDirectorService.getDirectors().subscribe(directors => {
-      // console.log(directors);
       this.directors = directors as FilmDirector[];
     });
   }
