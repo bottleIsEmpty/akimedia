@@ -9,20 +9,20 @@
           minlength="2"
           maxlength="50"
           ngModel
-          #firstName="ngModel"
-          name="firstName"
+          #name="ngModel"
+          name="name"
           type="text" 
           class="form-control" 
           id="director-name" 
           placeholder="Квентин">
           <div 
-            *ngIf="firstName.invalid && firstName.touched" 
+            *ngIf="name.invalid && name.touched" 
             class="alert alert-danger">
-            <div *ngIf="firstName.errors.required">
+            <div *ngIf="name.errors.required">
               Введите имя.
             </div>
-            <div *ngIf="firstName.errors.minlength">
-              Имя должно быть не короче {{ firstName.errors.minlength.requiredLength }} символов.
+            <div *ngIf="name.errors.minlength">
+              Имя должно быть не короче {{ name.errors.minlength.requiredLength }} символов.
             </div>
           </div>
       </div>
@@ -33,20 +33,20 @@
           minlength="2"
           maxlength="50"
           ngModel
-          #secondName="ngModel"
-          name="secondName" 
+          #surname="ngModel"
+          name="surname" 
           type="text" 
           class="form-control" 
           id="director-surname" 
           placeholder="Тарантино">
           <div 
-            *ngIf="secondName.invalid && secondName.touched" 
+            *ngIf="surname.invalid && surname.touched" 
             class="alert alert-danger">
-            <div *ngIf="secondName.errors.required">
+            <div *ngIf="surname.errors.required">
               Введите фамилию.
             </div>
-            <div *ngIf="secondName.errors.minlength">
-              Фамилия должна быть не короче {{ secondName.errors.minlength.requiredLength }} символов.
+            <div *ngIf="surname.errors.minlength">
+              Фамилия должна быть не короче {{ surname.errors.minlength.requiredLength }} символов.
             </div>
           </div>
       </div>
@@ -84,7 +84,7 @@
           id="director-death-year" 
           placeholder="1960">
           <div 
-            *ngIf="deathYear.touched && deathYear.value <= bornYear.value" 
+            *ngIf="deathYear.touched && deathYear.value != '' && deathYear.value <= bornYear.value" 
             class="alert alert-danger">
             Год смерти должен быть больше года рождения.
           </div>
@@ -116,7 +116,7 @@
       </div>
     </div>
     <div class="col-12 col-md-6">
-      <photo [imgSrc]="imgSrc" imageType="Фото"></photo>
+      <photo imageType="Фото"></photo>
     </div>
   </div>
   <div class="row justify-content-center mt-4">

@@ -1,42 +1,52 @@
-<div class="row">
-  <div class="col-12">
-    <h3>Квентин Тарантино</h3>
+<div class="container" *ngIf="director">
+  <div class="row">
+    <div class="col-12">
+      <h3>{{ director.name + ' ' + director.surname }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <img 
+        class="rounded"
+        [src]="director.photo || 'assets/no-photo.png'">
+    </div>
+    <div class="col-8">
+      <ul>
+        <div class="row">
+          <li>
+            <b>Имя: </b>{{ director.name }}
+          </li>
+        </div>
+        <div class="row">
+          <li>
+            <b>Фамилия: </b>{{ director.surname }}
+          </li>
+        </div>
+        <div class="row">
+          <li>
+            <b>Год рождения: </b>{{ director.bornYear }}
+          </li>
+        </div>
+        <div class="row" *ngIf="director.deathYear">
+          <li>
+            <b>Год рождения: </b>{{ director.deathYear }}
+          </li>
+        </div>
+        <div class="row">
+          <li>
+            <b>Страна: </b>{{ director.country }}
+          </li>
+        </div>
+        <div class="row">
+          <li>
+            <b>Всего фильмов: </b> {{ director.totalFilms || 0}}
+          </li>
+        </div>
+      </ul>
+      
+    </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-4">
-    <img 
-      class="rounded"
-      src="assets/no-photo.png">
-  </div>
-  <div class="col-8">
-    <ul>
-      <div class="row">
-        <li>
-          <b>Имя: </b>Квентин
-        </li>
-      </div>
-      <div class="row">
-        <li>
-          <b>Фамилия: </b>Тарантино
-        </li>
-      </div>
-      <div class="row">
-        <li>
-          <b>Год рождения: </b>1960
-        </li>
-      </div>
-      <div class="row">
-        <li>
-          <b>Страна: </b>США
-        </li>
-      </div>
-      <div class="row">
-        <li>
-          <b>Всего фильмов: </b>45
-        </li>
-      </div>
-    </ul>
-    
-  </div>
+<div class="container" *ngIf="!director">
+  Загрузка...
 </div>

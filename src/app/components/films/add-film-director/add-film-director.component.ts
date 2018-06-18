@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { PhotoComponent } from './../../shared/photo/photo.component';
+import { FilmDirector } from './../../../models/films/film-director.model';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { FilmDirectorService } from '../../../services/films/film-director.service';
 
 @Component({
   selector: 'app-add-film-director',
@@ -9,21 +13,25 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AddFilmDirectorComponent {
 
-  imgSrc: String = 'assets/no-photo.png';
+  @ViewChild(PhotoComponent) private photoComponent: PhotoComponent;
   isButtonInvisible = true;
+  photo: File;
 
-  constructor(public SnackBar: MatSnackBar) { }
+  constructor(public SnackBar: MatSnackBar, private directorService: FilmDirectorService) { }
 
-  photoChanged(eventArgs) {
-    this.imgSrc = eventArgs.imgSrc;
-  }
+  submit(formData) {
+    this.directorService.addDirector(<FilmDirector>formData.value)
+      .subscribe(director => {
+        this.SnackBar.open('Режиссёр успешно добавлен!', null, { duration: 2000 });
+        formData.reset();
 
-  submit(f: FormGroup) {
-    f.reset();
-    //this.removePhoto();
-    this.SnackBar.open('Режиссёр успешно добавлен!', null, {
-      duration: 2000
-    });
+        if (!this.photoComponent.imgFile) {
+          return;
+        }
+
+        this.directorService.addPhoto(director.id, this.photoComponent.imgFile);
+
+      });
   }
 
 }

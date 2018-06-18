@@ -1,25 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'photo',
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent {
 
-  @Input('imgSrc') imgSrc = 'assets/no-photo.png';
+  // tslint:disable-next-line:no-input-rename
   @Input('imageType') imageType: string;
-  @Output('change') change = new EventEmitter();
   isButtonInvisible = true;
+  // tslint:disable-next-line:no-input-rename
+  @Input('imgSrc') imgSrc: any = 'assets/no-photo.png';
+  imgFile: File;
 
   removePhoto() {
     this.imgSrc = 'assets/no-photo.png';
-    let photo = <HTMLInputElement>(document.getElementById('photo'));
-    photo.value = ''; 
-    // this.change.emit({
-    //   imgSrc: this.imgSrc
-    // });
-
+    this.imgFile = null;
     this.isButtonInvisible = true;
   }
 
@@ -40,10 +38,8 @@ export class PhotoComponent {
     const reader = new FileReader();
 
     reader.onload = () => {
-      // this.change.emit({
-      //   imgSrc: reader.result
-      // }),
       this.imgSrc = reader.result;
+      this.imgFile = reader.result;
       this.isButtonInvisible = false;
     };
     reader.readAsDataURL(file);

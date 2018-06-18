@@ -1,3 +1,5 @@
-import { Author } from "../author.model";
+import { Author } from '../author.model';
 
-export class FilmDirector extends Author {}
+export class FilmDirector extends Author {
+    totalFilms?: number;
+}

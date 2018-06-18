@@ -12,7 +12,9 @@
       class="row content-block p-2 mb-2"
       *ngFor="let director of directors">
       <div class="col-3">
-        <img src="assets/no-photo.png" class="img img-tubmnail">
+        <img 
+          [src]="director.photo ? ('https://localhost:5001/photos/films/directors/' + director.photo) : 'assets/no-photo.png'" 
+          class="img img-tubmnail rounded">
       </div>
       <div class="col-9">
           <div class="col-9">

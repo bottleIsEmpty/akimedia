@@ -1,8 +1,9 @@
 export class Author {
-    id: number;
+    id?: number;
     name: String;
     surname: String;
     bornDate?: Date;
     deathDate?: Date;
     country: String;
+    photo: String;
 }

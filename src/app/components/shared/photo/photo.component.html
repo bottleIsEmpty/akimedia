@@ -1,30 +1,29 @@
 <div class="row justify-content-center">
-  <div class="col-8">
-    <div class="container">
-      <div class="row justify-content-center">
-        <h4 class="text-center">{{ imageType }}</h4>
-      </div>
-      <div class="row justify-content-center mt-1">
-        <img 
-          [src]="imgSrc"
-          class="rounded"
-          name="photo">
-      </div>
-      <div class="row justify-content-center mt-1">
-          <input
-            type="file" 
-            class="form-control-file col-11" 
-            id="photo" 
-            #photo
-            (change)="addPhoto(photo)">
-          <button 
-            type="button" 
-            class="btn btn-danger mt-2"
-            [class.invisible]="isButtonInvisible"
-            (click)="removePhoto()">
-            Удалить {{ imageType.toLowerCase() }}
-          </button>
-      </div>
+<div class="col-8">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h4 class="text-center">{{ imageType }}</h4>
+    </div>
+    <div class="row justify-content-center mt-1">
+      <img 
+        [src]="imgSrc"
+        class="rounded"
+        name="photo">
+    </div>
+    <div class="row justify-content-center mt-1">
+        <input
+          type="file" 
+          class="form-control-file col-11" 
+          id="photo" 
+          #photoValue
+          (change)="addPhoto(photoValue)">
+        <button 
+          type="button" 
+          class="btn btn-danger mt-2"
+          [class.invisible]="isButtonInvisible"
+          (click)="removePhoto()">
+          Удалить {{ imageType.toLowerCase() }}
+        </button>
     </div>
   </div>
 </div>

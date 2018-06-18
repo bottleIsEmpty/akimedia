@@ -17,11 +17,13 @@ export class AddFilmComponent {
       title: ['', [
           Validators.required,
           Validators.minLength(2),
+          Validators.maxLength(500)
         ]
       ],
       director: ['', [
           Validators.required,
           Validators.minLength(2),
+          Validators.maxLength(300)
         ]
       ],
       year: ['', [

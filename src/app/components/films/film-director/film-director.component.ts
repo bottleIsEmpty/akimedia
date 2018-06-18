@@ -1,3 +1,7 @@
+import { environment } from './../../../../environments/environment';
+import { FilmDirector } from './../../../models/films/film-director.model';
+import { FilmDirectorService } from './../../../services/films/film-director.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmDirectorComponent implements OnInit {
 
-  constructor() { }
+  director: FilmDirector;
+
+  constructor(
+    private route: ActivatedRoute,
+    private filmDirectorService: FilmDirectorService,
+  ) { }
 
   ngOnInit() {
+    this.route.paramMap
+      .subscribe(params => {
+        const id = +params.get('id');
+        this.filmDirectorService.getDirector(id).subscribe(director => {
+          if (director.photo) {
+            director.photo = environment.apiUrl + '/photos/films/directors/' + director.photo;
+          }
+
+          this.director = director;
+        });
+      });
   }
 
 }
