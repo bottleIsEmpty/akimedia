@@ -2,6 +2,8 @@ import { FilmDirector } from './../../models/films/film-director.model';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { of } from 'rxjs/observable/of';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class FilmDirectorService {
@@ -10,9 +12,25 @@ export class FilmDirectorService {
 
   constructor(private http: Http) { }
 
-  getDirectors() {
+  getDirectors(query?: string) {
+    let queryUrl = this.url;
+    if (query && query !== '') {
+      queryUrl = `${this.url}?query=${query}`;
+    }
+
     return this.http.get(this.url)
       .map(res => res.json());
+  }
+
+  search(query: string) {
+    if (query === '') {
+      return of([]);
+    }
+
+    return this.http.get(`${this.url}?query=${query}`)
+      .pipe(
+        map(response => response[1])
+      );
   }
 
   getDirector(id: number) {
@@ -21,15 +39,15 @@ export class FilmDirectorService {
   }
 
   addDirector(director: FilmDirector) {
-    // const directorData = JSON.stringify(director);
     return this.http.post(this.url, director)
       .map(res => res.json());
   }
 
-  addPhoto(id: number, photo: File) {
-    const formData = new FormData();
-    formData.append('photo', photo);
+  addPhoto(id: number, file) {
+    const formData: FormData = new FormData();
+    formData.append('photo', file);
 
     return this.http.post(`${this.url}/${id}/photo`, formData);
+      // .map(res => res.json());
   }
 }

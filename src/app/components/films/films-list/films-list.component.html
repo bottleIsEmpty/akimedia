@@ -8,30 +8,43 @@
     <search productType="film"></search>
   </div>
   <div class="col-12 col-lg-8">
-      <div class="container">
-        <div 
-          *ngFor="let film of films" 
-          class="row content-block p-2 mb-2">
-          <div class="col-3">
-            <img [src]="film.logo" class="img img-tubmnail">
-          </div>
-          <div class="col-9">
-            <ul>
-              <li><b>Название: </b><a [routerLink]="['/films', film.id]">{{ film.title }}</a></li>
-              <li><b>Режиссёр: </b>{{ film.director.name + ' ' + film.director.surname }}</li>
-              <li><b>Описание: </b>{{ film.description }}</li>
-            </ul>
-          </div>
+    <div class="container" *ngIf="films">
+      <div *ngFor="let film of films" class="row content-block p-2 mb-2">
+        <div class="col-3">
+          <img [src]="film.logo ? ('https://localhost:5001/photos/films/films/' + film.logo) : 'assets/no-photo.png'" class="img img-tubmnail">
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link active" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <div class="col-9">
+          <ul>
+            <li>
+              <b>Название: </b>
+              <a [routerLink]="['/films', film.id]">{{ film.title }}</a>
+            </li>
+            <li>
+              <b>Режиссёр: </b>{{ film.director.name + ' ' + film.director.surname }}</li>
+            <li>
+              <b>Описание: </b>{{ film.description }}</li>
           </ul>
-        </nav>
+        </div>
       </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link active" href="#">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>

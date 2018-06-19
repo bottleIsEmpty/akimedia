@@ -8,7 +8,7 @@
     <div class="col-4">
       <img 
         class="rounded"
-        [src]="film.logo">
+        [src]="film.logo ? ('https://localhost:5001/photos/films/films/' + film.logo) : 'assets/no-photo.png'">
     </div>
     <div class="col-8">
       <ul>
@@ -27,7 +27,7 @@
           <li><b>Жанры: </b>{{ film.genres.join(', ') }}</li>
         </div>
         <div class="row">
-          <li><b>Тип: </b>{{ film.type ? 'Фильм' : 'Сериал' }}</li>
+          <li><b>Тип: </b>{{ film.type }}</li>
         </div>
         <div class="row">
           <li><b>Описание: </b>{{ film.description }}</li>

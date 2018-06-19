@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,11 +13,13 @@ export class PhotoComponent {
   isButtonInvisible = true;
   // tslint:disable-next-line:no-input-rename
   @Input('imgSrc') imgSrc: any = 'assets/no-photo.png';
-  imgFile: File;
+  imgFile: any;
+  @ViewChild('photoValue') photoValue: ElementRef;
 
   removePhoto() {
     this.imgSrc = 'assets/no-photo.png';
     this.imgFile = null;
+    this.photoValue.nativeElement.value = '';
     this.isButtonInvisible = true;
   }
 
@@ -39,7 +41,7 @@ export class PhotoComponent {
 
     reader.onload = () => {
       this.imgSrc = reader.result;
-      this.imgFile = reader.result;
+      this.imgFile = <HTMLInputElement>this.photoValue.nativeElement.files[0];
       this.isButtonInvisible = false;
     };
     reader.readAsDataURL(file);

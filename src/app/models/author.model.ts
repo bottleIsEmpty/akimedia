@@ -5,5 +5,5 @@ export class Author {
     bornDate?: Date;
     deathDate?: Date;
     country: String;
-    photo: String;
+    photo?: String;
 }

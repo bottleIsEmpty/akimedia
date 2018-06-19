@@ -26,7 +26,7 @@ export class FilmProfileComponent implements OnInit {
       .subscribe(params => {
         const id = +params.get('id');
         this.filmsService.getFilm(id)
-          .then(film => this.film = film );
+          .subscribe(film => this.film = film );
       });
 
     this.filmsService.getComments()

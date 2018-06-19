@@ -1,18 +1,40 @@
+import { PhotoComponent } from './../../shared/photo/photo.component';
+import { GenreComponent } from './../../shared/genre/genre.component';
+import { GenreService } from './../../../services/genre.service';
+import { FilmDirector } from './../../../models/films/film-director.model';
+import { FilmDirectorService } from './../../../services/films/film-director.service';
 import { MatSnackBar } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormArray, FormControl, FormsModule } from '@angular/forms';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/switchMap';
+import { FilmsService } from '../../../services/films/films.service';
+
 
 @Component({
   selector: 'app-add-film',
   templateUrl: './add-film.component.html',
   styleUrls: ['./add-film.component.scss']
 })
-export class AddFilmComponent {
+export class AddFilmComponent implements OnInit {
 
   imgSrc = 'assets/no-photo.png';
   form: FormGroup;
+  directors: FilmDirector[];
+  @ViewChild('directorField') directorField: ElementRef;
+  @ViewChild(GenreComponent) private genreComponent: GenreComponent;
+  @ViewChild(PhotoComponent) private photoComponent: PhotoComponent;
 
-  constructor(public SnackBar: MatSnackBar, fb: FormBuilder) {
+  ngOnInit() {
+    this.filmDirectorService.getDirectors()
+      .subscribe(directors => this.directors = directors);
+  }
+
+  constructor(public SnackBar: MatSnackBar,
+    fb: FormBuilder,
+    private filmDirectorService: FilmDirectorService,
+    private filmsService: FilmsService,
+  ) {
     this.form = fb.group({
       title: ['', [
           Validators.required,
@@ -32,7 +54,7 @@ export class AddFilmComponent {
           Validators.max(new Date().getFullYear())
         ]
       ],
-      type: [],
+      type: ['Фильм'],
       genres: fb.array([]),
       description: ['', Validators.minLength(50)]
     });
@@ -41,19 +63,36 @@ export class AddFilmComponent {
   updateGenres(genres) {
     console.log(genres);
   }
-  
+
   submit($event) {
-    console.log(event);
-    this.form.reset();
-    this.SnackBar.open('Режиссёр успешно добавлен!', null, {
-      duration: 2000
-    });
+    const genres = this.genreComponent.genres.map(genre => new FormControl(genre.id));
+    genres.forEach(genre => this.genres.push(genre));
+
+    const photo = this.photoComponent.imgFile;
+
+    this.filmsService.addFilm(this.form.value)
+      .subscribe(response => {
+        this.form.reset();
+        this.SnackBar.open('Режиссёр успешно добавлен!', null, {
+          duration: 2000
+        });
+
+        if (photo) {
+          this.filmsService.addPhoto(response.id, photo)
+            .subscribe();
+        }
+      });
+
   }
 
   // Геттеры
 
-  get genres() {
+  get genres(): FormArray {
     return <FormArray>this.form.get('genres');
+  }
+
+  set genres(value) {
+    this.form.get('genres').setValue(value);
   }
 
   get title() {

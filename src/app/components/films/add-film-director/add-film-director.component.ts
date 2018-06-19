@@ -1,10 +1,8 @@
 import { PhotoComponent } from './../../shared/photo/photo.component';
-import { FilmDirector } from './../../../models/films/film-director.model';
-
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FilmDirectorService } from '../../../services/films/film-director.service';
+import { FilmDirector } from '../../../models/films/film-director.model';
 
 @Component({
   selector: 'app-add-film-director',
@@ -25,13 +23,17 @@ export class AddFilmDirectorComponent {
         this.SnackBar.open('Режиссёр успешно добавлен!', null, { duration: 2000 });
         formData.reset();
 
-        if (!this.photoComponent.imgFile) {
+        const photo = this.photoComponent.imgFile;
+
+        if (!photo) {
           return;
         }
 
-        this.directorService.addPhoto(director.id, this.photoComponent.imgFile);
+        this.directorService.addPhoto(director.id, photo)
+          .subscribe(data => console.log(data), error => console.log(error));
 
       });
   }
-
 }
+
+

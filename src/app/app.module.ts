@@ -1,3 +1,4 @@
+import { GenreService } from './services/genre.service';
 import { FilmDirectorService } from './services/films/film-director.service';
 import { MockBackend } from '@angular/http/testing';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +11,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NouisliderModule } from 'ng2-nouislider';
 import { StarRatingModule } from 'angular-star-rating';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { CarouselModule } from "angular2-carousel";
+import { CarouselModule } from 'angular2-carousel';
 
 // Components
 import { AppComponent } from './app.component';
@@ -233,7 +234,8 @@ import { fakeBackendProvider } from './helpers/mock-backend';
     FilmsService,
     FilmDirectorService,
     BooksService,
-    AuthService
+    AuthService,
+    GenreService
 
     // Mock backend
     // fakeBackendProvider,
