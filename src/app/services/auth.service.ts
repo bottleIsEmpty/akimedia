@@ -1,64 +1,93 @@
-import { Router } from '@angular/router';
-import { JwtHelper } from 'angular2-jwt';
-import { Http } from '@angular/http';
+import { environment } from './../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt/';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import * as auth0 from 'auth0-js';
-
-(window as any).global = window;
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: Http, public router: Router) { }
+  constructor(private http: Http) { }
 
-  auth0 = new auth0.WebAuth({
-    clientID: 'd8alCpS7RjkBGbyADgy7ul1XdIkkJJzz',
-    domain: 'akimedia.auth0.com',
-    responseType: 'token id_token',
-    audience: 'https://akimedia.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/',
-    scope: 'openid'
-  });
+  url = environment.apiUrl || '';
 
-  public login(): void {
-    this.auth0.authorize();
-  }
-
-  public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        this.setSession(authResult);
-        this.router.navigate(['/home']);
-      } else if (err) {
-        this.router.navigate(['/home']);
-        console.log(err);
-      }
+  login(credentials) {
+    return this.http.post(
+      `${this.url}/api/token`,
+      credentials
+      ).map(response => {
+        const result = response.json();
+        if (response.status !== 200) {
+          return false;
+        }
+        if (result && result.account_token) {
+          localStorage.setItem('token', result.account_token);
+          return true;
+        }
+      return false;
     });
   }
 
-  private setSession(authResult): void {
-    // Set the time that the Access Token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
+  register(credentials) {
+    return this.http.post(`${this.url}/api/register`, credentials);
   }
 
-  public logout(): void {
-    // Remove tokens and expiry time from localStorage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    // Go back to the home route
-    this.router.navigate(['/']);
+  getUser(id) {
+    return this.http.get(`${this.url}/api/users/${id}`)
+      .map(res => res.json());
   }
 
-  public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // Access Token's expiry time
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
-    return new Date().getTime() < expiresAt;
+  getUsers() {
+    return this.http.get(`${this.url}/api/users/`)
+      .map(res => res.json());
   }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+  isLoggedIn() {
+    const jwtHelper = new JwtHelperService();
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return false;
+    }
+
+    const isExpired = jwtHelper.isTokenExpired(token);
+
+    return !isExpired;
+  }
+
+  isAdmin() {
+    if (this.isLoggedIn() && this.currentUser['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'admin') {
+      return true;
+    }
+
+    return false;
+  }
+
+  get currentUser() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+
+    return new JwtHelperService().decodeToken(token);
+  }
+
+  get loginValue() {
+    return this.currentUser['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+  }
+
+  get token() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+
+    return token;
+  }
+
+
 }

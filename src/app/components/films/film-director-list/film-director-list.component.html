@@ -13,7 +13,7 @@
       *ngFor="let director of directors">
       <div class="col-3">
         <img 
-          [src]="director.photo ? ('https://localhost:5001/photos/films/directors/' + director.photo) : 'assets/no-photo.png'" 
+          [src]="director.photo ? (apiUrl + '/photos/films/directors/' + director.photo) : 'assets/no-photo.png'" 
           class="img img-tubmnail rounded">
       </div>
       <div class="col-9">

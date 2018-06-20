@@ -1,10 +1,10 @@
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { GenreService } from './services/genre.service';
 import { FilmDirectorService } from './services/films/film-director.service';
-import { MockBackend } from '@angular/http/testing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
+import { RouterModule, CanActivate } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -12,6 +12,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { StarRatingModule } from 'angular-star-rating';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CarouselModule } from 'angular2-carousel';
+import { JwtModule } from '@auth0/angular-jwt';
 
 // Components
 import { AppComponent } from './app.component';
@@ -24,7 +25,6 @@ import { FilmsListComponent } from './components/films/films-list/films-list.com
 import { FilmProfileComponent } from './components/films/film-profile/film-profile.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import { BaseRequestOptions } from '@angular/http';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { FilmDirectorListComponent } from './components/films/film-director-list/film-director-list.component';
 import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
@@ -52,9 +52,7 @@ import { ShortifyPipe } from './pipes/shortify.pipe';
 import { AuthService } from './services/auth.service';
 import { BooksService } from './services/books/books.service';
 import { FilmsService } from './services/films/films.service';
-
-// Helpers
-import { fakeBackendProvider } from './helpers/mock-backend';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -90,6 +88,12 @@ import { fakeBackendProvider } from './helpers/mock-backend';
     MusicListComponent,
   ],
   imports: [
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        whitelistedDomains: ['localhost:5001', 'localhost:5000', 'akimedia.ru']
+      }
+    }),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -135,7 +139,8 @@ import { fakeBackendProvider } from './helpers/mock-backend';
           },
           {
             path: 'add',
-            component: AddFilmComponent
+            component: AddFilmComponent,
+            canActivate: [AdminAuthGuard]
           },
           {
             path: 'directors',
@@ -146,7 +151,8 @@ import { fakeBackendProvider } from './helpers/mock-backend';
               },
               {
                 path: 'add',
-                component: AddFilmDirectorComponent
+                component: AddFilmDirectorComponent,
+                canActivate: [AdminAuthGuard]
               },
               {
                 path: ':id',
@@ -169,7 +175,8 @@ import { fakeBackendProvider } from './helpers/mock-backend';
           },
           {
             path: 'add',
-            component: AddBookComponent
+            component: AddBookComponent,
+            canActivate: [AdminAuthGuard]
           },
           {
             path: 'authors',
@@ -180,7 +187,8 @@ import { fakeBackendProvider } from './helpers/mock-backend';
               },
               {
                 path: 'add',
-                component: AddBookAuthorComponent
+                component: AddBookAuthorComponent,
+                canActivate: [AdminAuthGuard]
               },
               {
                 path: ':id',
@@ -214,7 +222,8 @@ import { fakeBackendProvider } from './helpers/mock-backend';
               },
               {
                 path: 'add',
-                component: AddMusicComposerComponent
+                component: AddMusicComposerComponent,
+                canActivate: [AdminAuthGuard]
               },
               {
                 path: ':id',
@@ -235,7 +244,9 @@ import { fakeBackendProvider } from './helpers/mock-backend';
     FilmDirectorService,
     BooksService,
     AuthService,
-    GenreService
+    GenreService,
+
+    AdminAuthGuard
 
     // Mock backend
     // fakeBackendProvider,

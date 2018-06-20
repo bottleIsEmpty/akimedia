@@ -64,7 +64,7 @@ export class AddFilmComponent implements OnInit {
     console.log(genres);
   }
 
-  submit($event) {
+  submit() {
     const genres = this.genreComponent.genres.map(genre => new FormControl(genre.id));
     genres.forEach(genre => this.genres.push(genre));
 

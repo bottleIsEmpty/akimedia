@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { FilmDirector } from './../../../models/films/film-director.model';
 import { FilmDirectorService } from './../../../services/films/film-director.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
 export class FilmDirectorListComponent implements OnInit {
 
   directors: FilmDirector[];
+  apiUrl;
 
   constructor(private filmDirectorService: FilmDirectorService) { }
 
   ngOnInit() {
+    this.apiUrl = environment.apiUrl;
     this.filmDirectorService.getDirectors().subscribe(directors => {
       this.directors = directors as FilmDirector[];
     });

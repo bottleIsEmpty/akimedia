@@ -1,7 +1,9 @@
+import { AuthService } from './../../services/auth.service';
 import { LoginValidators } from './login.validators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,10 +14,13 @@ export class SignUpComponent {
 
   form: FormGroup;
   imgSrc = 'assets/no-photo.png';
+  incorrect = false;
 
   constructor(
     fb: FormBuilder,
-    private router: Router) {
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar) {
     this.form = fb.group({
       login: ['', [
           Validators.required,
@@ -36,7 +41,7 @@ export class SignUpComponent {
           Validators.email
         ]
       ]
-    })
+    });
   }
 
   register() {
@@ -44,8 +49,14 @@ export class SignUpComponent {
       this.passwordRepeat.setErrors({ notMatch: true});
       return false;
     }
-    
-    this.router.navigate(['/login']);
+
+    this.authService.register(this.form.value)
+      .subscribe(result => {
+        this.snackBar.open('Вы успешно зарегистрированы в системе',  null, { duration: 2000 });
+        this.router.navigate(['/login']);
+      }, error => {
+        this.incorrect = true;
+      });
   }
 
   get login() {

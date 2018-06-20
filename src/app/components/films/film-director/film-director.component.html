@@ -8,7 +8,7 @@
     <div class="col-4">
       <img 
         class="rounded"
-        [src]="director.photo || 'assets/no-photo.png'">
+        [src]="director.photo ? (apiUrl + '/photos/films/directors/' + director.photo) : 'assets/no-photo.png'">
     </div>
     <div class="col-8">
       <ul>

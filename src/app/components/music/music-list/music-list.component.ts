@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicListComponent {
 
-  // musics: Music[];
+  musics = [];
 
   // constructor(private musicService: MusicService) { }
 

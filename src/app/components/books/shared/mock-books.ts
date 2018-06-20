@@ -5,7 +5,7 @@ export const BOOKS: Book[] = [
     id: 0,
     title: 'Отцы и дети',
     year: 1840,
-    type: 0,
+    type: 'книга',
     genres: [
       'Роман',
       'Драма'
@@ -24,7 +24,7 @@ export const BOOKS: Book[] = [
     id: 1,
     title: 'Над пропастью во ржи',
     year: 1960,
-    type: 0,
+    type: 'книга',
     genres: [
       'Роман',
       'Драма'
@@ -43,7 +43,7 @@ export const BOOKS: Book[] = [
     id: 2,
     title: '1984',
     year: 1948,
-    type: 0,
+    type: 'книга',
     genres: [
       'Роман',
       'Драма',

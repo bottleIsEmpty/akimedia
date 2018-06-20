@@ -1,3 +1,5 @@
+import { AuthService } from './../../../services/auth.service';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
   lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ex dolorum porro qui dolorem modi nisi, ab alias! Quos, ab ipsam. Ratione voluptatem iste iure modi, dolorum exercitationem ex nesciunt';
@@ -131,8 +133,25 @@ export class UserProfileComponent {
     },
   ];
 
+  user: any;
+
+  constructor(public router: Router, public authService: AuthService, private route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this.route.paramMap
+      .subscribe(paramMap => {
+        const id = paramMap.get('id');
+
+        this.authService.getUser(id)
+          .subscribe(user => {
+            console.log(user);
+            this.user = user;
+          }, err => console.log(err));
+      });
+  }
+
   showFullText($event) {
     $event.target.parentElement.innerText = this.lorem;
   }
-
 }

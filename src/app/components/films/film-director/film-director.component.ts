@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class FilmDirectorComponent implements OnInit {
 
   director: FilmDirector;
+  apiUrl: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,14 +20,11 @@ export class FilmDirectorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.apiUrl = environment.apiUrl;
     this.route.paramMap
       .subscribe(params => {
         const id = +params.get('id');
         this.filmDirectorService.getDirector(id).subscribe(director => {
-          if (director.photo) {
-            director.photo = environment.apiUrl + '/photos/films/directors/' + director.photo;
-          }
-
           this.director = director;
         });
       });

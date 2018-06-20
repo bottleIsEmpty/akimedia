@@ -5,7 +5,7 @@ export const FILMS: Film[] = [
     id: 0,
     title: 'Начало',
     year: 2010,
-    type: 0,
+  type: 'Фильм',
     genres: [
       'Трилер',
       'Боевик',
@@ -26,7 +26,7 @@ export const FILMS: Film[] = [
     id: 1,
     title: 'Форрест Гамп',
     year: 1994,
-    type: 0,
+    type: 'Фильм',
     genres: [
       'Драма',
       'Мелодрама',
@@ -47,7 +47,7 @@ export const FILMS: Film[] = [
     id: 2,
     title: 'Престиж',
     year: 2006,
-    type: 0,
+    type: 'Фильм',
     genres: [
       'Трилер',
       'Боевик',

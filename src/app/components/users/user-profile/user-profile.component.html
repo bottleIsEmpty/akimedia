@@ -1,74 +1,77 @@
-<div class="row">
-  <h3 class="mt-3 mb-3">Пользователь <b>Александр</b></h3>
-</div>
-<div class="row">
-  <div class="card col-12 mb-3 p-0">
-    <div class="card-header">Активность пользователя</div>
-    <div class="card-body">
-      <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <p><b>Фильмов оценено: </b>10</p>
-            <p><b>Книг оценено: </b>3</p>
-            <p><b>Музыки оцененено: </b>55</p>
-            <p><b>Всего рецензий: </b> 4</p>
-          </div>
-          <div class="col-6">
-            <p><b>Средняя оценка фильмов: </b>6.72</p>
-            <p><b>Средняя оценка книг: </b>8.30</p>
-            <p><b>Средняя оценка музыки: </b>7.14</p>
+<ng-container *ngIf="!user">Загрузка...</ng-container>
+<ng-container *ngIf="user">
+  <div class="row">
+    <h3 class="mt-3 mb-3">Пользователь <b>{{ user.login }}</b></h3>
+  </div>
+  <div class="row">
+    <div class="card col-12 mb-3 p-0">
+      <div class="card-header">Активность пользователя</div>
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <p><b>Фильмов оценено: </b>{{ user.filmsEvalueted || 0 }}</p>
+              <p><b>Книг оценено: </b>{{ user.booksEvalueted || 0 }}</p>
+              <p><b>Музыки оцененено: </b>{{ user.musicEvalueted || 0 }}</p>
+              <p><b>Всего рецензий: </b>{{ user.totalComments || 0 }}</p>
+            </div>
+            <div class="col-6">
+              <p><b>Средняя оценка фильмов: </b>{{ user.filmAvgValue || 0 }}</p>
+              <p><b>Средняя оценка книг: </b>{{ user.bookAvgValue || 0 }}</p>
+              <p><b>Средняя оценка музыки: </b>{{ user.musicAvgValue || 0 }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <h4 class="col-12">Оцененные фильмы</h4>
-  <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="filmData"></ng2-smart-table>
-</div>
-<div class="row">
-  <h4 class="col-12">Оцененные книги</h4>
-  <ng2-smart-table class="table table-bordered rounded" [settings]="bookTableSettings" [source]="bookData"></ng2-smart-table>
-</div>
-<div class="row">
-  <h4 class="col-12">Оцененная музыка</h4>
-  <ng2-smart-table class="table table-bordered rounded" [settings]="musicTableSettings" [source]="musicData"></ng2-smart-table>
-</div>
-<div class="row">
-  <h4 class="col-12">Рецензии пользователя</h4>
-  <table class="table table-bordered ">
-    <thead>
-      <tr>
-        <th>Название: </th>
-        <th>Рецензия: </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr #row>
-        <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
-        <td 
-          class="comment">
-          {{ lorem | shortify }}
-          <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
-        </td>
-      </tr>
-      <tr #row>
-        <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
-        <td 
-          class="comment">
-          {{ lorem | shortify }}
-          <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
-        </td>
-      </tr>
-      <tr #row>
-        <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
-        <td 
-          class="comment">
-          {{ lorem | shortify }}
-          <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
-        </td>
-      </tr> 
-    </tbody>
-  </table>
-</div>
+  <div class="row">
+    <h4 class="col-12">Оцененные фильмы</h4>
+    <ng2-smart-table class="table table-bordered rounded" [settings]="filmTableSettings" [source]="filmData"></ng2-smart-table>
+  </div>
+  <div class="row">
+    <h4 class="col-12">Оцененные книги</h4>
+    <ng2-smart-table class="table table-bordered rounded" [settings]="bookTableSettings" [source]="bookData"></ng2-smart-table>
+  </div>
+  <div class="row">
+    <h4 class="col-12">Оцененная музыка</h4>
+    <ng2-smart-table class="table table-bordered rounded" [settings]="musicTableSettings" [source]="musicData"></ng2-smart-table>
+  </div>
+  <div class="row">
+    <h4 class="col-12">Рецензии пользователя</h4>
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th>Название: </th>
+          <th>Рецензия: </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr #row>
+          <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
+          <td 
+            class="comment">
+            {{ lorem | shortify }}
+            <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
+          </td>
+        </tr>
+        <tr #row>
+          <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
+          <td 
+            class="comment">
+            {{ lorem | shortify }}
+            <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
+          </td>
+        </tr>
+        <tr #row>
+          <td><a [routerLink]="['/films', 1]">Криминальное чтиво</a></td>
+          <td 
+            class="comment">
+            {{ lorem | shortify }}
+            <a (click)="showFullText($event)" style="color: #007bff">Показать полностью</a>
+          </td>
+        </tr> 
+      </tbody>
+    </table>
+  </div>
+</ng-container>

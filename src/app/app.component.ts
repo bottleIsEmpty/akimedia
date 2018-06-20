@@ -10,6 +10,5 @@ export class AppComponent {
   title = 'Akimedia';
 
   constructor(public auth: AuthService) {
-    auth.handleAuthentication();
   }
 }

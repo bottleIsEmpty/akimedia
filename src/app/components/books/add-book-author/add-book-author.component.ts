@@ -15,6 +15,9 @@ export class AddBookAuthorComponent implements OnInit {
     this.imgSrc = eventArgs.imgSrc;
   }
 
+  submit(smth) {
+  }
+
   ngOnInit() {
   }
 

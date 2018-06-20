@@ -1,3 +1,6 @@
+import { environment } from './../../../../environments/environment.prod';
+import { AuthService } from './../../../services/auth.service';
+import { COMMENTS } from './../shared/mock-comments';
 import { MatSnackBar } from '@angular/material';
 import { Film } from '../../../models/films/film.model';
 import { Component, OnInit } from '@angular/core';
@@ -14,43 +17,43 @@ export class FilmProfileComponent implements OnInit {
 
   film: Film;
   comments = [];
+  apiUrl: string;
 
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute,
     public snackBar: MatSnackBar,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.apiUrl = environment.apiUrl;
     this.route.paramMap
       .subscribe(params => {
         const id = +params.get('id');
+
         this.filmsService.getFilm(id)
           .subscribe(film => this.film = film );
+
+        this.filmsService.getComments(id)
+          .subscribe(comments => this.comments = comments);
       });
 
-    this.filmsService.getComments()
-      .then(comments => this.comments = comments);
   }
 
-  addComment(comment, filmRating) {
-    const commentValue = {
-      id: 1,
-      film: 1,
-      date: new Date(),
-      commentedBy: {
-          id: 1,
-          login: 'Михаил',
-          email: 'mikhail@gmail.com'
-      },
-      commentType: filmRating,
-      comment: comment
-    };
+  addComment(comment, type) {
+    type = +type;
 
-    this.comments.push(commentValue);
-    this.snackBar.open('Комментарий успешно добавлен', null, {
-      duration: 2000
-    });
+    this.filmsService.addComment(this.film.id, comment, type)
+      .subscribe(result => {
+        this.filmsService.getComments(this.film.id)
+          .subscribe(comments => this.comments = comments);
+      });
+
+  }
+
+  updateRating($event) {
+    console.log($event);
   }
 
 }

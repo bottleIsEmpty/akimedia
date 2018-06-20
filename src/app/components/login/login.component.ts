@@ -1,3 +1,4 @@
+
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,12 @@ export class LoginComponent {
               private router: Router) { }
 
   signIn(credentials) {
-    this.authService.login();
+    this.authService.login(credentials)
+      .subscribe(result => {
+        if (result) {
+          this.router.navigate(['/']);
+        }
+      }, error => this.invalidLogin = true);
   }
 
 }

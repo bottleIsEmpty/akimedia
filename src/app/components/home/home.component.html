@@ -11,15 +11,12 @@
     <h3>Последние добавленные</h3>
   </div>
   <div class="row slider text-center justify-content-center">
-    <carousel-component autoPlay="true" delayAutoPlay="10000" morePairSlides="1">
-      <div class="item-carousel">a</div>
-      <div class="item-carousel">
+    <carousel-component autoPlay="true" delayAutoPlay="10000" morePairSlides="1" *ngIf="lastFilms">
+      <div class="item-carousel" *ngFor="let film of lastFilms">
         <div class="b">
-          <a class="img-link" routerLink="/films/0" href="#"><img src="assets/inception.jpg"></a>
+          <a class="img-link" [routerLink]="'/films/' + film.id" href="#"><img [src]="film.logo ? urlValue + '/photos/films/films/' + film.logo : 'assets/no-photo.png'"></a>
         </div>
       </div>
-      <div class="item-carousel">c</div>
-      <div class="item-carousel">d</div>
     </carousel-component>
   </div>
 </div>
@@ -39,26 +36,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
+          <tr *ngFor="let film of topFilms; let i = index">
+            <td>{{i + 1}}</td>
             <td>
-              <a routerLink="#">Форрест Гамп</a>
+              <a [routerLink]="'/films/' + film.id">{{ film.title }}</a>
             </td>
-            <td>9.4</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>
-              <a routerLink="#">Зелёная миля</a>
-            </td>
-            <td>9.2</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>
-              <a routerLink="#">Бойцовский клуб</a>
-            </td>
-            <td>9.0</td>
+            <td>{{ film.rating }}</td>
           </tr>
         </tbody>
       </table>

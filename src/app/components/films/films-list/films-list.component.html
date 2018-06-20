@@ -11,7 +11,7 @@
     <div class="container" *ngIf="films">
       <div *ngFor="let film of films" class="row content-block p-2 mb-2">
         <div class="col-3">
-          <img [src]="film.logo ? ('https://localhost:5001/photos/films/films/' + film.logo) : 'assets/no-photo.png'" class="img img-tubmnail">
+          <img [src]="film.logo ? (apiUrl + '/photos/films/films/' + film.logo) : 'assets/no-photo.png'" class="img img-tubmnail">
         </div>
         <div class="col-9">
           <ul>

@@ -1,3 +1,9 @@
 .img-link {
     display: inline-block;
 }
+
+.img-link > img{
+    height: 400px !important;
+    max-height: 400px !important;
+    width: auto !important;
+}
